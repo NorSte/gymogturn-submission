@@ -37,6 +37,11 @@ const App = () => {
     }
   };
 
+  const handleClearFiles = () => {
+    setFiles(null);
+    setDownloadUrl(null);
+  };
+
   const handleUpload = async () => {
     if (!files || files.length === 0) return;
 
@@ -170,6 +175,15 @@ const App = () => {
           >
             {uploading ? "⏳ Jobber med fordeling..." : "🚀 Last opp og prosesser"}
           </button>
+
+          {files && (
+            <button
+              onClick={handleClearFiles}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
+            >
+              🗑️ Tøm filer
+            </button>
+          )}
 
           {downloadUrl && (
             <div className="mt-6 text-center">
