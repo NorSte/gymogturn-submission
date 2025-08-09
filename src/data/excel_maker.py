@@ -2,7 +2,7 @@ import json
 from openpyxl import load_workbook
 from collections import defaultdict
 
-# Load the mock data from JSON
+# LEGG INN TURNERE HER || HUSK Å ENDRE OUTPUT-PATH
 with open("turnere.json", "r", encoding="utf-8") as f:
     gymnasts = json.load(f)
 

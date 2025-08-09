@@ -1,0 +1,884 @@
+[
+  {
+    "licenseNumber": 9299333,
+    "fullName": "Benjamin Knutsen",
+    "dob": "24-02-2013",
+    "club": "Ålesund Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 2707454,
+    "fullName": "Emil Hansen",
+    "dob": "22-09-2013",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 5172336,
+    "fullName": "Sondre Foss",
+    "dob": "12-12-2013",
+    "club": "Fredrikstad Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 1398972,
+    "fullName": "Lars Svendsen",
+    "dob": "22-11-2013",
+    "club": "Kristiansand Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 7952784,
+    "fullName": "Adrian Olsen",
+    "dob": "29-01-2014",
+    "club": "Bergen Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8207152,
+    "fullName": "Arne Nilsen",
+    "dob": "21-06-2013",
+    "club": "Bergen Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 2153930,
+    "fullName": "Espen Foss",
+    "dob": "09-05-2014",
+    "club": "Tromsø Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 7560386,
+    "fullName": "Leander Ali",
+    "dob": "26-12-2014",
+    "club": "Ålesund Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8951101,
+    "fullName": "Aksel Skoglund",
+    "dob": "25-06-2014",
+    "club": "Bergen Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3778045,
+    "fullName": "Daniel Madsen",
+    "dob": "18-04-2013",
+    "club": "Bergen Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6967680,
+    "fullName": "Jonathan Ali",
+    "dob": "25-01-2013",
+    "club": "Tønsberg Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8125009,
+    "fullName": "Magnus Bråthen",
+    "dob": "10-01-2014",
+    "club": "Ålesund Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8220817,
+    "fullName": "Magnus Moe",
+    "dob": "06-06-2014",
+    "club": "Fredrikstad Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6779546,
+    "fullName": "Per Karlsen",
+    "dob": "27-03-2014",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 1145661,
+    "fullName": "Fredrik Knudsen",
+    "dob": "10-01-2013",
+    "club": "Stavanger Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6189631,
+    "fullName": "Andreas Gulbrandsen",
+    "dob": "15-03-2013",
+    "club": "Lillestrøm Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3291916,
+    "fullName": "Erik Hagen",
+    "dob": "03-01-2014",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8449038,
+    "fullName": "Patrick Skoglund",
+    "dob": "03-08-2013",
+    "club": "Stavanger Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 1096118,
+    "fullName": "Sebastian Bøe",
+    "dob": "30-12-2013",
+    "club": "Oslo Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 4724501,
+    "fullName": "Eirik Nygård",
+    "dob": "02-02-2013",
+    "club": "Kristiansand Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6427633,
+    "fullName": "Sander Hauge",
+    "dob": "07-04-2014",
+    "club": "Tromsø Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3775722,
+    "fullName": "Tobias Nilsen",
+    "dob": "07-01-2013",
+    "club": "Ålesund Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6271835,
+    "fullName": "Kjell Fredriksen",
+    "dob": "26-05-2014",
+    "club": "Stavanger Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3198650,
+    "fullName": "Elias Strand",
+    "dob": "26-10-2013",
+    "club": "Fredrikstad Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6798465,
+    "fullName": "Bjørn Olsen",
+    "dob": "18-07-2013",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 9620427,
+    "fullName": "Noah Lie",
+    "dob": "16-05-2013",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 4890651,
+    "fullName": "Vetle Knutsen",
+    "dob": "26-04-2013",
+    "club": "Tønsberg Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8768555,
+    "fullName": "Noah Myklebust",
+    "dob": "12-04-2013",
+    "club": "Tønsberg Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3305085,
+    "fullName": "Eirik Aas",
+    "dob": "08-06-2013",
+    "club": "Bergen Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6648998,
+    "fullName": "Mikael Halvorsen",
+    "dob": "29-08-2013",
+    "club": "Bergen Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 1617061,
+    "fullName": "Ole Skoglund",
+    "dob": "27-12-2014",
+    "club": "Drammen Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6431594,
+    "fullName": "Fredrik Hagen",
+    "dob": "28-07-2013",
+    "club": "Fredrikstad Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 1281941,
+    "fullName": "Lars Bøe",
+    "dob": "24-03-2014",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8708908,
+    "fullName": "Mark Ruud",
+    "dob": "03-06-2014",
+    "club": "Trondheim Turnforening",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 6238254,
+    "fullName": "Andreas Berge",
+    "dob": "20-01-2013",
+    "club": "Tromsø Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3414467,
+    "fullName": "Elias Iversen",
+    "dob": "25-07-2013",
+    "club": "Tromsø Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 4088589,
+    "fullName": "Arne Bråthen",
+    "dob": "06-05-2014",
+    "club": "Bodø Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8508127,
+    "fullName": "Marius Ellingsen",
+    "dob": "04-12-2014",
+    "club": "Kristiansand Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 4994934,
+    "fullName": "Kjell Olsen",
+    "dob": "31-12-2014",
+    "club": "Ålesund Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 7941951,
+    "fullName": "Jonathan Svendsen",
+    "dob": "01-12-2013",
+    "club": "Tønsberg Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 3971696,
+    "fullName": "Oscar Nilsen",
+    "dob": "29-03-2014",
+    "club": "Lillestrøm Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 4479800,
+    "fullName": "Vetle Myklebust",
+    "dob": "08-05-2013",
+    "club": "Tønsberg Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 8780577,
+    "fullName": "Mikkel Eide",
+    "dob": "20-10-2014",
+    "club": "Bodø Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 5847056,
+    "fullName": "Mats Bøe",
+    "dob": "07-01-2014",
+    "club": "Lillestrøm Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 9643009,
+    "fullName": "Simen Kristoffersen",
+    "dob": "22-07-2013",
+    "club": "Asker Turn",
+    "category": "rekrutt"
+  },
+  {
+    "licenseNumber": 1535932,
+    "fullName": "Oscar Sjøberg",
+    "dob": "19-05-2012",
+    "club": "Fredrikstad Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 7591741,
+    "fullName": "Thomas Johansen",
+    "dob": "08-07-2012",
+    "club": "Kristiansand Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 5442038,
+    "fullName": "Sebastian Knutsen",
+    "dob": "27-01-2012",
+    "club": "Tønsberg Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 8686277,
+    "fullName": "Sander Hagen",
+    "dob": "09-05-2011",
+    "club": "Tromsø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 8051272,
+    "fullName": "Per Karlsen",
+    "dob": "01-10-2011",
+    "club": "Lillestrøm Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 6147321,
+    "fullName": "Isak Myklebust",
+    "dob": "20-06-2011",
+    "club": "Ålesund Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4778383,
+    "fullName": "Kasper Ellingsen",
+    "dob": "31-01-2011",
+    "club": "Trondheim Turnforening",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 2594051,
+    "fullName": "Mikkel Hansen",
+    "dob": "05-01-2011",
+    "club": "Bodø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4010590,
+    "fullName": "Markus Ahmed",
+    "dob": "16-01-2012",
+    "club": "Tromsø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4791671,
+    "fullName": "Jonatan Engen",
+    "dob": "27-12-2011",
+    "club": "Tønsberg Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 5190893,
+    "fullName": "Sander Dahl",
+    "dob": "16-10-2011",
+    "club": "Tromsø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 3259692,
+    "fullName": "Oscar Engen",
+    "dob": "27-09-2012",
+    "club": "Tromsø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 1515384,
+    "fullName": "Eirik Moe",
+    "dob": "03-01-2011",
+    "club": "Kristiansand Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 1563149,
+    "fullName": "Ole Haug",
+    "dob": "25-10-2011",
+    "club": "Ålesund Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4423970,
+    "fullName": "Eirik Strand",
+    "dob": "03-02-2012",
+    "club": "Tønsberg Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 6085707,
+    "fullName": "Ole Fredriksen",
+    "dob": "23-10-2011",
+    "club": "Trondheim Turnforening",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 8843991,
+    "fullName": "Patrick Nguyen",
+    "dob": "30-03-2011",
+    "club": "Tønsberg Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 6067066,
+    "fullName": "Jonatan Lunde",
+    "dob": "02-05-2011",
+    "club": "Fredrikstad Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 5225833,
+    "fullName": "Noah Lie",
+    "dob": "16-08-2011",
+    "club": "Tønsberg Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 1137871,
+    "fullName": "Anders Svendsen",
+    "dob": "08-06-2011",
+    "club": "Ålesund Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 2788880,
+    "fullName": "Stian Skoglund",
+    "dob": "19-11-2011",
+    "club": "Tønsberg Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 3358859,
+    "fullName": "Roar Knutsen",
+    "dob": "13-04-2012",
+    "club": "Trondheim Turnforening",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 9729191,
+    "fullName": "Espen Moe",
+    "dob": "14-06-2011",
+    "club": "Fredrikstad Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 1898826,
+    "fullName": "Morten Dahl",
+    "dob": "02-10-2011",
+    "club": "Lillestrøm Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 8538079,
+    "fullName": "Lars Aune",
+    "dob": "17-08-2011",
+    "club": "Oslo Turnforening",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 5477366,
+    "fullName": "Daniel Dahl",
+    "dob": "19-10-2011",
+    "club": "Oslo Turnforening",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 2891472,
+    "fullName": "Morten Skoglund",
+    "dob": "04-12-2011",
+    "club": "Kristiansand Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4936691,
+    "fullName": "Eirik Lunde",
+    "dob": "20-01-2012",
+    "club": "Stavanger Turnforening",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 9416944,
+    "fullName": "Oliver Hagen",
+    "dob": "19-07-2011",
+    "club": "Tromsø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4716836,
+    "fullName": "Henrik Bakken",
+    "dob": "04-05-2012",
+    "club": "Tromsø Turn",
+    "category": "13-14"
+  },
+  {
+    "licenseNumber": 4415519,
+    "fullName": "Simen Aune",
+    "dob": "19-01-2009",
+    "club": "Kristiansand Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 6511443,
+    "fullName": "Emil Kristoffersen",
+    "dob": "04-02-2010",
+    "club": "Tønsberg Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 3017579,
+    "fullName": "Magnus Nguyen",
+    "dob": "25-01-2010",
+    "club": "Bergen Turnforening",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 6097291,
+    "fullName": "Jonas Eide",
+    "dob": "08-04-2010",
+    "club": "Fredrikstad Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 4280384,
+    "fullName": "Vetle Hauge",
+    "dob": "14-08-2009",
+    "club": "Lillestrøm Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 5780875,
+    "fullName": "Emil Svendsen",
+    "dob": "22-10-2009",
+    "club": "Drammen Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 8560326,
+    "fullName": "Noah Myklebust",
+    "dob": "29-03-2010",
+    "club": "Fredrikstad Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 4816088,
+    "fullName": "Lars Gulbrandsen",
+    "dob": "03-03-2009",
+    "club": "Asker Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 2258671,
+    "fullName": "Even Iversen",
+    "dob": "11-06-2010",
+    "club": "Asker Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 4955377,
+    "fullName": "Benjamin Hansen",
+    "dob": "06-02-2009",
+    "club": "Drammen Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 6036768,
+    "fullName": "Per Haugen",
+    "dob": "18-08-2009",
+    "club": "Tønsberg Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 7678924,
+    "fullName": "Jonas Karlsen",
+    "dob": "14-07-2010",
+    "club": "Ålesund Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 8076926,
+    "fullName": "Anders Sjøberg",
+    "dob": "10-03-2010",
+    "club": "Stavanger Turnforening",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 6806406,
+    "fullName": "Harald Knutsen",
+    "dob": "01-10-2010",
+    "club": "Asker Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 5645264,
+    "fullName": "Bjørn Eide",
+    "dob": "09-10-2009",
+    "club": "Bergen Turnforening",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 1327871,
+    "fullName": "Markus Engen",
+    "dob": "27-02-2009",
+    "club": "Tønsberg Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 1938713,
+    "fullName": "Philip Ellingsen",
+    "dob": "18-01-2009",
+    "club": "Tønsberg Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 1202491,
+    "fullName": "Bjørn Ahmed",
+    "dob": "09-10-2010",
+    "club": "Tromsø Turn",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 9207943,
+    "fullName": "Sebastian Lie",
+    "dob": "04-07-2009",
+    "club": "Trondheim Turnforening",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 7265475,
+    "fullName": "Erik Bøe",
+    "dob": "16-11-2009",
+    "club": "Trondheim Turnforening",
+    "category": "15-16"
+  },
+  {
+    "licenseNumber": 7401693,
+    "fullName": "Bjørn Halvorsen",
+    "dob": "15-12-2008",
+    "club": "Bergen Turnforening",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 5245438,
+    "fullName": "Sander Eide",
+    "dob": "25-04-2007",
+    "club": "Kristiansand Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 1692063,
+    "fullName": "Magnus Bakken",
+    "dob": "06-10-2007",
+    "club": "Ålesund Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 1728106,
+    "fullName": "Alexander Lund",
+    "dob": "08-10-2007",
+    "club": "Ålesund Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 4088424,
+    "fullName": "Mats Johansen",
+    "dob": "26-07-2008",
+    "club": "Bodø Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 6438146,
+    "fullName": "Fredrik Bråthen",
+    "dob": "20-01-2007",
+    "club": "Tromsø Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 4968609,
+    "fullName": "Mats Fredriksen",
+    "dob": "22-02-2008",
+    "club": "Asker Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 1652621,
+    "fullName": "Per Bråthen",
+    "dob": "13-06-2007",
+    "club": "Bodø Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 7819995,
+    "fullName": "Adrian Olsen",
+    "dob": "09-09-2008",
+    "club": "Trondheim Turnforening",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 8623394,
+    "fullName": "Ole Foss",
+    "dob": "18-05-2008",
+    "club": "Lillestrøm Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 5435113,
+    "fullName": "Erik Sæther",
+    "dob": "12-04-2008",
+    "club": "Bergen Turnforening",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 9776435,
+    "fullName": "Vetle Bakken",
+    "dob": "16-11-2007",
+    "club": "Tønsberg Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 5977257,
+    "fullName": "Vetle Sæther",
+    "dob": "11-09-2007",
+    "club": "Drammen Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 1343535,
+    "fullName": "Emil Madsen",
+    "dob": "19-10-2007",
+    "club": "Lillestrøm Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 6979583,
+    "fullName": "Mats Aune",
+    "dob": "11-07-2008",
+    "club": "Fredrikstad Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 6717524,
+    "fullName": "Øystein Martinsen",
+    "dob": "01-02-2008",
+    "club": "Bergen Turnforening",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 3063409,
+    "fullName": "Mark Ali",
+    "dob": "17-08-2008",
+    "club": "Bodø Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 1726269,
+    "fullName": "Patrick Knutsen",
+    "dob": "20-09-2007",
+    "club": "Bodø Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 8016995,
+    "fullName": "Sebastian Strand",
+    "dob": "27-12-2008",
+    "club": "Tønsberg Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 8779509,
+    "fullName": "Sivert Iversen",
+    "dob": "01-02-2008",
+    "club": "Kristiansand Turn",
+    "category": "17-18"
+  },
+  {
+    "licenseNumber": 4094061,
+    "fullName": "Espen Knutsen",
+    "dob": "11-08-2004",
+    "club": "Tønsberg Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 3867480,
+    "fullName": "Noah Bøe",
+    "dob": "24-02-1956",
+    "club": "Drammen Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 6177431,
+    "fullName": "Jørgen Larsen",
+    "dob": "16-07-1990",
+    "club": "Lillestrøm Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 7751102,
+    "fullName": "Jonathan Gulbrandsen",
+    "dob": "17-03-1994",
+    "club": "Ålesund Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 5114182,
+    "fullName": "Adrian Martinsen",
+    "dob": "27-04-2005",
+    "club": "Kristiansand Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 7419558,
+    "fullName": "Eirik Strand",
+    "dob": "01-09-1923",
+    "club": "Tønsberg Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 1860756,
+    "fullName": "Magnus Sæther",
+    "dob": "10-07-1959",
+    "club": "Kristiansand Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 5116722,
+    "fullName": "Patrick Ruud",
+    "dob": "13-05-1931",
+    "club": "Lillestrøm Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 7110316,
+    "fullName": "Erik Halvorsen",
+    "dob": "03-01-1903",
+    "club": "Bergen Turnforening",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 8801183,
+    "fullName": "Mikael Bråthen",
+    "dob": "03-04-1911",
+    "club": "Fredrikstad Turn",
+    "category": "senior"
+  },
+  {
+    "licenseNumber": 4695647,
+    "fullName": "Fredrik Johansen",
+    "dob": "16-06-1946",
+    "club": "Asker Turn",
+    "category": "senior"
+  }
+]
