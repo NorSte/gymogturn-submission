@@ -10,7 +10,7 @@ This is the root React component of your application. It usually contains:
     Any top-level state or context providers
 */
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import { readGymnastsFromExcel } from "@/services/excelReader";
 import { generateGroupPlan } from "@/services/groupPlanner";
@@ -18,41 +18,58 @@ import { Gymnast } from "@/types/Gymnast";
 
 const App = () => {
   const [started, setStarted] = useState(false);
-  const [files, setFiles] = useState<FileList | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+
+   // Prepend new files, dedupe by name+size+lastModified, clear download link
+  const mergeFiles = (incoming: FileList | File[]) => {
+    const newOnes = Array.from(incoming);
+    const combined = [...newOnes, ...files]; // prepend new first
+    const seen = new Set<string>();
+    const deduped: File[] = [];
+    for (const f of combined) {
+      const key = `${f.name}-${f.size}-${f.lastModified}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        deduped.push(f);
+      }
+    }
+    setFiles(deduped);
+    setDownloadUrl(null);
+  };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (event.dataTransfer.files.length > 0) {
-      setFiles(event.dataTransfer.files);
-      setDownloadUrl(null);
+      mergeFiles(event.dataTransfer.files);
     }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFiles(event.target.files);
-      setDownloadUrl(null);
+    if (event.target.files && event.target.files.length > 0) {
+      mergeFiles(event.target.files);
+      // allow picking the same file again next time
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
   const handleClearFiles = () => {
-    setFiles(null);
+    setFiles([]);
     setDownloadUrl(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const handleUpload = async () => {
-    if (!files || files.length === 0) return;
-
+    const handleUpload = async () => {
+    if (!files.length) return;
     setUploading(true);
-
     try {
       const allGymnasts: Gymnast[] = [];
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-
         const gymnastsFromFile = await readGymnastsFromExcel(file);
         console.log(`File ${file.name} → ${gymnastsFromFile.length} gymnasts`);
         allGymnasts.push(...gymnastsFromFile);
@@ -66,22 +83,14 @@ const App = () => {
       }
 
       const wb = XLSX.utils.book_new();
-
       for (const [poolName, groups] of Object.entries(planned)) {
         const rows: any[] = [];
-        
-        // Pushing header row
         rows.push(["Navn", "Klubb", "Klasse"]);
-          let i = 0
-          groups.forEach((group) => {
-            i++
-            // Pushing Pool and group
-            rows.push([poolName, "Gruppe " + i]);
-            group.forEach((g) => {
-              // Pushing gymnasts
-              rows.push([g.full_name, g.club, g.category]);
-            });
-
+        let i = 0;
+        groups.forEach((group) => {
+          i++;
+          rows.push([poolName, "Gruppe " + i]);
+          group.forEach((g) => rows.push([g.full_name, g.club, g.category]));
           rows.push([]);
         });
         const ws = XLSX.utils.aoa_to_sheet(rows);
@@ -92,7 +101,6 @@ const App = () => {
       const blob = new Blob([buffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       });
-
       const url = URL.createObjectURL(blob);
       setDownloadUrl(url);
     } catch (err) {
@@ -154,36 +162,44 @@ const App = () => {
             type="file"
             accept=".xlsx"
             multiple
+            onClick={() => {
+              // ensures picking the same file fires onChange
+              if (fileInputRef.current) fileInputRef.current.value = "";
+            }}
             onChange={handleFileChange}
             className="mb-4 w-full file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-lg file:bg-blue-600 file:text-white hover:file:bg-blue-700"
           />
 
-          {files && (
-            <div className="mb-4">
+          {files.length > 0 && (
+            <div className="mb-8">
               <ul className="text-sm text-gray-700 list-disc list-inside">
-                {Array.from(files).map((file, index) => (
-                  <li key={index}>📄 {file.name}</li>
+                {files.map((file) => (
+                  <li key={`${file.name}-${file.size}-${file.lastModified}`}>📄 {file.name}</li>
                 ))}
               </ul>
+              <div className="text-sm text-gray-600 mb-1">
+                {files.length} fil{files.length === 1 ? "" : "er"} klare for opplasting
+              </div>
             </div>
           )}
 
           <button
             onClick={handleUpload}
-            disabled={!files || uploading}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg disabled:opacity-50 transition"
+            disabled={!files.length || uploading}
+            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg disabled:opacity-50 transition"
           >
             {uploading ? "⏳ Jobber med fordeling..." : "🚀 Last opp og prosesser"}
           </button>
 
-          {files && (
-            <button
-              onClick={handleClearFiles}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
-            >
-              🗑️ Tøm filer
-            </button>
-          )}
+          
+          <button
+            onClick={handleClearFiles}
+            disabled={!files.length || uploading}
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
+          >
+            🗑️ Tøm filer
+          </button>
+          
 
           {downloadUrl && (
             <div className="mt-6 text-center">
