@@ -135,7 +135,7 @@ const App = () => {
           className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 text-lg font-semibold px-4 py-2 rounded-md bg-blue-100 hover:bg-blue-200 transition-shadow shadow-sm hover:shadow-md"
         >
           <img
-            src="./NGTFlogo400.png"
+            src="/NGTFlogo400.png"
             alt="Tilbake til start"
             className="h-[75px] w-[75px] object-contain"
           />

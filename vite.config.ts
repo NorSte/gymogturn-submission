@@ -3,12 +3,13 @@ import react from '@vitejs/plugin-react'
 import path from 'node:path'
 
 export default defineConfig({
-  //base: './', // For Electron
+  base: '/', // For Electron/Vercel
+  //base: "/pamelding/", // For GitHub Pages
   plugins: [react()],
-  base: "/pamelding/", // For GitHub Pages
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'frontend/src'),
+      // hvor er vi ? -- base
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 })
