@@ -15,6 +15,7 @@ import * as XLSX from "xlsx";
 import { readGymnastsFromExcel } from "@/services/excelReader";
 import { generateGroupPlan } from "@/services/groupPlanner";
 import { Gymnast } from "@/types/Gymnast";
+import SignatureBadge  from "./components/SignatureBadge";
 
 const App = () => {
   const [started, setStarted] = useState(false);
@@ -62,10 +63,11 @@ const App = () => {
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-    const handleUpload = async () => {
+  const handleUpload = async () => {
     if (!files.length) return;
     setUploading(true);
     try {
+      // Burde være i en excelWriter.ts fil
       const allGymnasts: Gymnast[] = [];
 
       for (let i = 0; i < files.length; i++) {
@@ -123,6 +125,11 @@ const App = () => {
         >
           🚀 Start planlegging - Turn menn
         </button>
+
+        <SignatureBadge
+          text="Laget av Nore Stene"
+          href="https://www.linkedin.com/in/nore-skulesson-stene/"
+        />
       </div>
     );
   }
@@ -214,6 +221,12 @@ const App = () => {
           )}
         </div>
       </div>
+      <SignatureBadge
+          text="Laget av Nore Stene"
+          // logoSrc="/NGTFlogo400.png"      // optional
+          href="https://www.linkedin.com/in/nore-skulesson-stene/" // optional (clickable if set)
+          // allowClose // optional if you want an X to hide it (remembers via localStorage)
+        />
     </div>
   );
 };

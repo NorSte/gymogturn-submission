@@ -76,6 +76,5 @@ export function generateGroupPlan(gymnasts: Gymnast[]): Record<string, Group[]> 
     );
     result[poolName] = assignGroupsByClub(gymnastsInPool, limit, categoryOrder);
   }
-
   return result;
 }
