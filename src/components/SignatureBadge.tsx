@@ -10,7 +10,7 @@ type Props = {
 
 const SignatureBadge: React.FC<Props> = ({
   text = "Laget av Nore Stene",
-  logoSrc = "NorSte.jpg",
+  logoSrc = "NGTFlogo400.png",
   href = "https://github.com/NorSte",                // if omitted -> not clickable
   storageKey = "signatureBadgeDismissed",
   allowClose = false,
@@ -42,8 +42,8 @@ const SignatureBadge: React.FC<Props> = ({
           alt=""
           className="h-1 w-1 rounded-full object-cover mr-10"
           style={{ 
-            width: "40px", 
-            height: "40px",
+            width: "50px", 
+            height: "50px",
             marginRight: "8px" // padding between logo and signature
           }}
           aria-hidden="true"
@@ -72,10 +72,11 @@ const SignatureBadge: React.FC<Props> = ({
 
   return (
     <div
-      className="fixed z-50 bottom-4 left-1/2 -translate-x-1/2 print:hidden"
-      style={{
-        bottom: "calc(1rem + env(safe-area-inset-bottom))",
-      }}
+    className="fixed bottom-4 right-4"
+    style={{
+      bottom: "calc(1rem + env(safe-area-inset-bottom))",
+      right:"calc(1rem + env(safe-area-inset-right))",
+    }}
     >
       <div className="flex items-center gap-2 rounded-md px-3 py-1.5 opacity-70 hover:opacity-90 transition-opacity pointer-events-none">
         <Wrapper>{Content}</Wrapper>

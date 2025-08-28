@@ -116,22 +116,23 @@ const App = () => {
 
   if (!started) {
     return (
-      <div className="h-screen flex flex-col justify-center items-center text-center px-6">
-        <h1 className="text-3xl font-bold mb-4">Velkommen til Puljeplanleggeren</h1>
-        <p className="text-gray-600 mb-8">Last opp Excel-filer for å generere puljer og grupper automatisk.</p>
-        <button
-          onClick={() => setStarted(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition"
-        >
-          🚀 Start planlegging - Turn menn
-        </button>
+      <div className="h-screen relative">
+        {/* centered content */}
+        <div className="flex flex-col justify-center items-center text-center px-6 h-full">
+          <h1 className="text-3xl font-bold mb-4">Velkommen til Puljeplanleggeren</h1>
+          <p className="text-gray-600 mb-8">Last opp Excel-filer for å generere puljer og grupper automatisk.</p>
+          <button
+            onClick={() => setStarted(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition"
+          >
+            🚀 Start planlegging - Turn menn
+          </button>
+        </div>
 
-        <SignatureBadge
-          text="Laget av Nore Stene"
-          href="https://www.linkedin.com/in/nore-skulesson-stene/"
-        />
+        {/* pinned bottom-right */}
+        <SignatureBadge text="" logoSrc="/Norste.jpg" href="https://github.com/NorSte" />
       </div>
-    );
+  );
   }
 
   return (
@@ -222,9 +223,10 @@ const App = () => {
         </div>
       </div>
       <SignatureBadge
-          text="Laget av Nore Stene"
-          // logoSrc="/NGTFlogo400.png"      // optional
-          href="https://www.linkedin.com/in/nore-skulesson-stene/" // optional (clickable if set)
+          text=""
+          logoSrc="/Norste.jpg"
+          href="https://github.com/NorSte" // optional (clickable if set)
+          
           // allowClose // optional if you want an X to hide it (remembers via localStorage)
         />
     </div>
