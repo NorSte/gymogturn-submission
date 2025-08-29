@@ -5,33 +5,15 @@ type Props = {
   logoSrc?: string;   // e.g. "/NGTFlogo400.png" (put file in /public)
   href?: string;      // optional: if set, whole badge becomes a link
   storageKey?: string; // optional: remember dismissed state
-  allowClose?: boolean; // optional: show a small close "x"
 };
 
 const SignatureBadge: React.FC<Props> = ({
   text = "Laget av Nore Stene",
   logoSrc = "NGTFlogo400.png",
-  href = "https://github.com/NorSte",                // if omitted -> not clickable
+  href = "https://github.com/NorSte",               
   storageKey = "signatureBadgeDismissed",
-  allowClose = false,
 }) => {
   const [hidden, setHidden] = React.useState(false);
-
-  // If wanting user to be able to click it away
-  /*React.useEffect(() => {
-    try {
-      if (localStorage.getItem(storageKey) === "1") setHidden(true);
-    } catch {}
-  }, [storageKey]);*/
-
-  const dismiss = () => {
-    setHidden(true);
-    try {
-      localStorage.setItem(storageKey, "1");
-    } catch {}
-  };
-
-  if (hidden) return null;
 
   // shared content (logo + text)
   const Content = (
@@ -80,25 +62,6 @@ const SignatureBadge: React.FC<Props> = ({
     >
       <div className="flex items-center gap-2 rounded-md px-3 py-1.5 opacity-70 hover:opacity-90 transition-opacity pointer-events-none">
         <Wrapper>{Content}</Wrapper>
-
-        {allowClose && (
-          <button
-            type="button"
-            onClick={dismiss}
-            aria-label="Skjul signatur"
-            className="pointer-events-auto rounded p-1 hover:bg-black/5 dark:hover:bg-white/5"
-            title="Skjul"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" role="img" aria-hidden="true">
-              <path
-                d="M18 6L6 18M6 6l12 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        )}
       </div>
     </div>
   );

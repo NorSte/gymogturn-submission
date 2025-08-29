@@ -12,7 +12,7 @@ This is where the app boots up. It's responsible for:
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./App.css"; // should be global styles, but haven't made it yet
+import "./App.css"; // should be global styles
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
