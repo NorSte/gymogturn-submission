@@ -130,7 +130,7 @@ const App = () => {
         </div>
 
         {/* pinned bottom-right */}
-        <SignatureBadge text="" logoSrc="/public/Norste.jpg" href="https://github.com/NorSte" />
+        <SignatureBadge text="" logoSrc="/NorSte.jpg" href="https://github.com/NorSte" />
       </div>
   );
   }
@@ -224,7 +224,7 @@ const App = () => {
       </div>
       <SignatureBadge
           text=""
-          logoSrc="/public/Norste.jpg"
+          logoSrc="/NorSte.jpg"
           href="https://github.com/NorSte" // optional (clickable if set)
           
           // allowClose // optional if you want an X to hide it (remembers via localStorage)
