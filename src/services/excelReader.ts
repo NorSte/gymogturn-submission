@@ -2,7 +2,7 @@ import * as XLSX from 'xlsx';
 
 import { Gymnast } from '@/types/Gymnast';
 
-export function readGymnastsFromExcel(file: File): Promise<Gymnast[]> {
+export function readGymnastsFromExcel(file: File): Promise<{ valid: Gymnast[], invalid: {row:number; name?:string; errors:string[]}[] }> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -16,18 +16,22 @@ export function readGymnastsFromExcel(file: File): Promise<Gymnast[]> {
       const invalidGymnasts: { 
         row: number; 
         name?: string;
+        club?: string;
         errors: string[]; 
       }[] = [];
 
       const club = json[2]?.[2] || "Ukjent klubb"; // Cell C3
-      for (let i = 8; i < json.length; i++) { // Row 9 is index 8
+      for (let i = 9; i < json.length; i++) { // Row 10 is index 9
         const row = json[i];
         const license_number = row[0];
         const full_name = row[1];
         const is_coach = (typeof row[3] === "string" && row[3].toLowerCase() === "x");
         const dob = row[4];
         
-        if (!license_number) continue;
+        // If both license number AND name are missing → skip row entirely
+        if (!license_number && !full_name) {
+          continue;
+        }
 
         const categoryMap = {
           5: "rekrutt",
@@ -58,8 +62,9 @@ export function readGymnastsFromExcel(file: File): Promise<Gymnast[]> {
           console.warn(`⚠️ Invalid name in for club ${club} at row ${i + 1}`);
           invalidGymnasts.push({
             row: i + 1,
+            club: club,
             errors: [
-              `Invalid name input for club "${club}" (value: "${full_name}")`
+              `Invalid name input (name: "${full_name}")`
             ]
           });
           continue; // skip this gymnast
@@ -82,7 +87,8 @@ export function readGymnastsFromExcel(file: File): Promise<Gymnast[]> {
           invalidGymnasts.push({
             row: i + 1,
             name: full_name,
-            errors: ["Invalid DOB: " + dob]
+            club: club,
+            errors: ["Invalid Date of birth: " + dob]
           });
           continue;
         }
@@ -95,6 +101,7 @@ export function readGymnastsFromExcel(file: File): Promise<Gymnast[]> {
           invalidGymnasts.push({
             row: i+1,
             name: full_name,
+            club: club,
             errors: ["Is both gymnast and coach."]
           })
         }
@@ -114,7 +121,9 @@ export function readGymnastsFromExcel(file: File): Promise<Gymnast[]> {
 
       console.log("Gymnasts extracted from Excel:", gymnasts);
       console.log("Gymnasts with invalid output:", invalidGymnasts);
-      resolve(gymnasts);
+
+      // Uploading the gymnasts and the invalid inputs
+      resolve({ valid: gymnasts, invalid: invalidGymnasts });
     };
 
     reader.onerror = () => reject(reader.error);

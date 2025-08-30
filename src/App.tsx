@@ -23,6 +23,9 @@ const App = () => {
   const [uploading, setUploading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [invalidGymnasts, setInvalidGymnasts] = useState<
+    { row: number; name?: string; club?: string; errors: string[] }[]
+  >([]);
 
 
    // Prepend new files, dedupe by name+size+lastModified, clear download link
@@ -60,6 +63,7 @@ const App = () => {
   const handleClearFiles = () => {
     setFiles([]);
     setDownloadUrl(null);
+    setInvalidGymnasts([])
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -69,13 +73,17 @@ const App = () => {
     try {
       // Burde være i en excelWriter.ts fil
       const allGymnasts: Gymnast[] = [];
+      const allInvalid: {row:number; name?:string; errors:string[]}[] = [];
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const gymnastsFromFile = await readGymnastsFromExcel(file);
-        console.log(`File ${file.name} → ${gymnastsFromFile.length} gymnasts`);
-        allGymnasts.push(...gymnastsFromFile);
+        const { valid, invalid } = await readGymnastsFromExcel(file);
+        console.log(`File ${file.name} → ${valid.length} valid, ${invalid.length} invalid`);
+        allGymnasts.push(...valid);
+        allInvalid.push(...invalid);
       }
+
+      setInvalidGymnasts(allInvalid); // 👈 store in state
 
       const planned = generateGroupPlan(allGymnasts);
       console.log("Generated plan:", planned);
@@ -218,7 +226,7 @@ const App = () => {
           </div>
 
           {downloadUrl && (
-            <div className="mt-6 text-center">
+            <div style={{ marginBottom: "2rem", textAlign: "center" }}>
               <a
                 href={downloadUrl}
                 download="planned_groups_and_pools.xlsx"
@@ -228,8 +236,28 @@ const App = () => {
               </a>
             </div>
           )}
+
+          {/* 👇 New block for invalids */}
+          {invalidGymnasts.length > 0 && (
+            <div className="bg-red-50 border border-red-100 rounded-lg p-4">
+              <h2 className="text-red-400 font-semibold mb-2">
+                ⚠️ Gymnaster som krever manuell sjekk ({invalidGymnasts.length})
+              </h2>
+              <ul className="text-sm text-red-800 list-disc list-inside">
+                {invalidGymnasts.map((g, idx) => (
+                  <li key={idx}>
+                    {g.club ? `${g.club} – ` : ""}
+                    Rad {g.row} – {g.name || "Ukjent navn"} → {g.errors.join(", ")}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
         </div>
       </div>
+
+
       <SignatureBadge
           text=""
           logoSrc="/NorSte.jpg"

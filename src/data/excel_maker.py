@@ -3,7 +3,7 @@ from openpyxl import load_workbook
 from collections import defaultdict
 
 # LEGG INN TURNERE HER || HUSK Å ENDRE OUTPUT-PATH
-with open("turnere.json", "r", encoding="utf-8") as f:
+with open("ifact2Turnere.json", "r", encoding="utf-8") as f:
     gymnasts = json.load(f)
 
 # Group gymnasts by club
@@ -37,25 +37,25 @@ for club, members in club_groups.items():
     sheet["C5"] = "kontakt@example.com"
     sheet["C6"] = "12345678"
 
-    sheet["A8"] = "Lisensnr."
-    sheet["B8"] = "Navn"
-    sheet["C8"] = "Gymnast"
-    sheet["D8"] = "Trener"
-    sheet["E8"] = "Født."
-    sheet["F8"] = "Rekrutt"
-    sheet["G8"] = "13-14"
-    sheet["H8"] = "15-16"
-    sheet["I8"] = "17-18"
-    sheet["J8"] = "Senior"
-    sheet["K8"] = "Lunsj lørdag"
-    sheet["L8"] = "Lunsj søndag"
-    sheet["M8"] = "Transport"
-    sheet["N8"] = "Trening fredag"
-    sheet["O8"] = "Allergier"
-    sheet["P8"] = "Bekreftelse på samtykke vedr foto/film"
+    sheet["A9"] = "Lisensnr."
+    sheet["B9"] = "Navn"
+    sheet["C9"] = "Gymnast"
+    sheet["D9"] = "Trener"
+    sheet["E9"] = "Født."
+    sheet["F9"] = "Rekrutt"
+    sheet["G9"] = "13-14"
+    sheet["H9"] = "15-16"
+    sheet["I9"] = "17-18"
+    sheet["J9"] = "Senior"
+    sheet["K9"] = "Lunsj lørdag"
+    sheet["L9"] = "Lunsj søndag"
+    sheet["M9"] = "Transport"
+    sheet["N9"] = "Trening fredag"
+    sheet["O9"] = "Allergier"
+    sheet["P9"] = "Foto/filmtillatelse"
 
-    # Write each gymnast's info starting at row 8
-    row = 9
+    # Write each gymnast's info starting at row 10
+    row = 10
     for member in members:
         sheet[f"A{row}"] = member["licenseNumber"]
         sheet[f"B{row}"] = member["fullName"]
@@ -84,7 +84,7 @@ for club, members in club_groups.items():
 
     # Save the new file
     sanitized_club = club.replace(" ", "_").replace("/", "_")
-    output_path = f"./excel-mockdata/pamelding_{sanitized_club}.xlsx"
+    output_path = f"./excel-mockdata2/pamelding_{sanitized_club}.xlsx"
     workbook.save(output_path)
     output_files.append(output_path)
 
