@@ -191,23 +191,31 @@ const App = () => {
             </div>
           )}
 
-          <button
-            onClick={handleUpload}
-            disabled={!files.length || uploading}
-            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg disabled:opacity-50 transition"
-          >
-            {uploading ? "⏳ Jobber med fordeling..." : "🚀 Last opp og prosesser"}
-          </button>
+          <div className="flex items-center gap-3 mt-4">
+            <button
+              onClick={handleUpload}
+              disabled={!files.length || uploading}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg disabled:opacity-50 transition"
+            >
+              {uploading ? "⏳ Jobber med fordeling..." : "🚀 Last opp og prosesser"}
+            </button>
 
-          
-          <button
-            onClick={handleClearFiles}
-            disabled={!files.length || uploading}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
-          >
-            🗑️ Tøm filer
-          </button>
-          
+            <button
+              onClick={handleClearFiles}
+              disabled={!files.length || uploading}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
+            >
+              🗑️ Tøm filer
+            </button>
+
+            <a
+              href="/src/data/Pameldingskjema-mal.xlsx"
+              download
+              className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
+            >
+              📄 Last ned mal
+            </a>
+          </div>
 
           {downloadUrl && (
             <div className="mt-6 text-center">
