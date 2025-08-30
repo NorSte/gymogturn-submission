@@ -226,8 +226,6 @@ const App = () => {
           text=""
           logoSrc="/NorSte.jpg"
           href="https://github.com/NorSte" // optional (clickable if set)
-          
-          // allowClose // optional if you want an X to hide it (remembers via localStorage)
         />
     </div>
   );
