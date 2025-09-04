@@ -14,6 +14,7 @@ import React, { useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import { readGymnastsFromExcel } from "@/services/excelReader";
 import { generateGroupPlan } from "@/services/groupPlanner";
+import { writeGroupPlanToExcel } from "@/services/groupWriter";
 import { Gymnast } from "@/types/Gymnast";
 import SignatureBadge  from "./components/SignatureBadge";
 
@@ -71,9 +72,8 @@ const App = () => {
     if (!files.length) return;
     setUploading(true);
     try {
-      // Burde være i en excelWriter.ts fil
       const allGymnasts: Gymnast[] = [];
-      const allInvalid: {row:number; name?:string; errors:string[]}[] = [];
+      const allInvalid: { row: number; name?: string; errors: string[] }[] = [];
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -83,36 +83,15 @@ const App = () => {
         allInvalid.push(...invalid);
       }
 
-      setInvalidGymnasts(allInvalid); // 👈 store in state
+      setInvalidGymnasts(allInvalid);
 
       const planned = generateGroupPlan(allGymnasts);
       console.log("Generated plan:", planned);
 
-      if (Object.keys(planned).length === 0) {
-        throw new Error("Ingen puljer ble generert – sjekk at Excel-filen har riktige kolonner og verdier.");
-      }
-
-      const wb = XLSX.utils.book_new();
-      for (const [poolName, groups] of Object.entries(planned)) {
-        const rows: any[] = [];
-        rows.push(["Navn", "Klubb", "Klasse"]);
-        let i = 0;
-        groups.forEach((group) => {
-          i++;
-          rows.push([poolName, "Gruppe " + i]);
-          group.forEach((g) => rows.push([g.full_name, g.club, g.category]));
-          rows.push([]);
-        });
-        const ws = XLSX.utils.aoa_to_sheet(rows);
-        XLSX.utils.book_append_sheet(wb, ws, poolName);
-      }
-
-      const buffer = XLSX.write(wb, { type: "array", bookType: "xlsx" });
-      const blob = new Blob([buffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-      const url = URL.createObjectURL(blob);
+      // ✅ Now delegate Excel writing
+      const url = writeGroupPlanToExcel(planned);
       setDownloadUrl(url);
+
     } catch (err) {
       console.error("❌ Processing failed:", err);
       alert("Noe gikk galt: " + (err instanceof Error ? err.message : "Ukjent feil"));
@@ -120,28 +99,6 @@ const App = () => {
       setUploading(false);
     }
   };
-
-
-  if (!started) {
-    return (
-      <div className="h-screen relative">
-        {/* centered content */}
-        <div className="flex flex-col justify-center items-center text-center px-6 h-full">
-          <h1 className="text-3xl font-bold mb-4">Velkommen til Puljeplanleggeren</h1>
-          <p className="text-gray-600 mb-8">Last opp Excel-filer for å generere puljer og grupper automatisk.</p>
-          <button
-            onClick={() => setStarted(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition"
-          >
-            🚀 Start planlegging - Turn menn
-          </button>
-        </div>
-
-        {/* pinned bottom-right */}
-        <SignatureBadge text="" logoSrc="/NorSte.jpg" href="https://github.com/NorSte" />
-      </div>
-  );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 relative w-full">
@@ -217,7 +174,7 @@ const App = () => {
             </button>
 
             <a
-              href="/Pameldingskjema-mal.xlsx"
+              href="/src/data/Pameldingskjema-mal.xlsx"
               download
               className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
             >
