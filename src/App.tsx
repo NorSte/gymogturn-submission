@@ -11,7 +11,6 @@ This is the root React component of your application. It usually contains:
 */
 
 import React, { useRef, useState } from "react";
-import * as XLSX from "xlsx";
 import { readGymnastsFromExcel } from "@/services/excelReader";
 import { generateGroupPlan } from "@/services/groupPlanner";
 import { writeGroupPlanToExcel } from "@/services/groupWriter";
@@ -100,6 +99,26 @@ const App = () => {
     }
   };
 
+  if (!started) {
+    return (
+      <div className="h-screen relative">
+        {/* centered content */}
+        <div className="flex flex-col justify-center items-center text-center px-6 h-full">
+          <h1 className="text-3xl font-bold mb-4">Velkommen til Puljeplanleggeren</h1>
+          <p className="text-gray-600 mb-8">Last opp Excel-filer for å generere puljer og grupper automatisk.</p>
+          <button
+            onClick={() => setStarted(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition"
+          >
+            🚀 Start planlegging - Turn menn
+          </button>
+        </div>
+
+        {/* pinned bottom-right */}
+        <SignatureBadge text="" logoSrc="/NorSte.jpg" href="https://github.com/NorSte" />
+      </div>
+  );
+  }
   return (
     <div className="min-h-screen bg-gray-50 relative w-full">
       <div className="fixed top-4 left-4 z-50">

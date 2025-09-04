@@ -3,15 +3,17 @@ import { Gymnast } from '@/types/Gymnast';
 type Group = Gymnast[];
 
 const POOL_CATEGORIES: Record<string, string[]> = {
-  "Pulje 1": ["rekrutt", "13-14"],
-  "Pulje 2": ["15-16"],
-  "Pulje 3": ["17-18", "senior"],
+  "Pulje 1": ["rekrutt"],
+  "Pulje 2": ["13-14"],
+  "Pulje 3": ["15-16"],
+  "Pulje 4": ["17-18", "senior"],
 };
 
 const POOL_GROUP_LIMITS: Record<string, number> = {
   "Pulje 1": 6,
   "Pulje 2": 3,
   "Pulje 3": 3,
+  "Pulje 4": 3,
 };
 
 function assignGroupsByClub(
