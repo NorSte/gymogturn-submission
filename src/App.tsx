@@ -217,7 +217,7 @@ const App = () => {
             </button>
 
             <a
-              href="/src/data/Pameldingskjema-mal.xlsx"
+              href="/Pameldingskjema-mal.xlsx"
               download
               className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
             >
