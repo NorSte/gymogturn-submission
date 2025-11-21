@@ -1,4 +1,5 @@
 import json
+import os
 from openpyxl import load_workbook
 from collections import defaultdict
 
@@ -11,18 +12,19 @@ club_groups = defaultdict(list)
 for gymnast in gymnasts:
    club_groups[gymnast["club"]].append(gymnast)
 
-# Load the template Excel file
-template_path = "Pameldingskjema-mal.xlsx"
+# HUSK RIKTIG TYPE KONKURRANSE
+template_path = "Påmeldingsmal-TEST.xlsx"
 output_files = []
+konkType = "NC" # NMS  | NC  | NMJ 
 
 # Mapping categories to columns
 category_columns = {
-    "rekrutt": "F",
-    "13-14": "G",
-    "15-16": "H",
-    "17-18": "I",
-    "senior": "J",
-    "trener": "D"
+    "rekrutt": "C",
+    "13-14": "D",
+    "15-16": "E",
+    "17-18": "F",
+    "senior": "G",
+    "trener": "H"
 }
 
 # Write data for each club
@@ -32,59 +34,68 @@ for club, members in club_groups.items():
     sheet = workbook.active
 
     # Insert contact details
-    sheet["C3"] = club  # Club name
-    sheet["C4"] = "Kontaktperson Navn"
-    sheet["C5"] = "kontakt@example.com"
-    sheet["C6"] = "12345678"
+    sheet["B3"] = club  # Club name
+    sheet["B4"] = "Kontaktperson Navn"
+    sheet["B5"] = "kontakt@example.com"
+    sheet["B6"] = "12345678"
 
-    sheet["A9"] = "Lisensnr."
-    sheet["B9"] = "Navn"
-    sheet["C9"] = "Gymnast"
-    sheet["D9"] = "Trener"
-    sheet["E9"] = "Født."
-    sheet["F9"] = "Rekrutt"
-    sheet["G9"] = "13-14"
-    sheet["H9"] = "15-16"
-    sheet["I9"] = "17-18"
-    sheet["J9"] = "Senior"
-    sheet["K9"] = "Lunsj lørdag"
-    sheet["L9"] = "Lunsj søndag"
+    """
+    sheet["A9"] = "Navn"
+    sheet["B9"] = "Trener"
+    sheet["C9"] = "Fødselår"
+    sheet["D9"] = "Rekrutt."
+    sheet["E9"] = "13-14"
+    sheet["F9"] = "15-16"
+    sheet["G9"] = "17-18"
+    sheet["H9"] = "Senior"
+    sheet["I9"] = "Trener"
+    sheet["J9"] = "Middag Fredag"
+    sheet["K9"] = "Lunsj Lørdag"
+    sheet["L9"] = "Middag Lørdag"
+    sheet["L9"] = "Lunsj Søndag"
     sheet["M9"] = "Transport"
     sheet["N9"] = "Trening fredag"
     sheet["O9"] = "Allergier"
     sheet["P9"] = "Foto/filmtillatelse"
+    """
 
-    # Write each gymnast's info starting at row 10
-    row = 10
+    # Write each gymnast's info starting at row 12 after Eksempel Eksempelsen
+    row = 12
     for member in members:
-        sheet[f"A{row}"] = member["licenseNumber"]
-        sheet[f"B{row}"] = member["fullName"]
+        sheet[f"A{row}"] = member["fullName"]
+        sheet[f"B{row}"] = member["dob"]
 
-        if (member["category"])!= "trener":
-            sheet[f"C{row}"] = "x"
-        else:
-            sheet[f"C{row}"] = ""  # Gymnast - left empty
+        # This is making the excel file in the NC format
+        if (konkType == "NC"):
+            if (member["category"]) == "trener":
+                sheet[f"H{row}"] = "x"
 
-        if (member["category"])== "trener":
-            sheet[f"D{row}"] = "x"
-        else:
-            sheet[f"D{row}"] = ""  # Trener - left empty
+            # Writing in Gymnast category C-G
+            if member["category"] in category_columns:
+                sheet[f"{category_columns[member['category']]}{row}"] = "x"
 
-        sheet[f"E{row}"] = member["dob"]
+            # Writing in meals, allergies and permissions I-N for NC
+            for col in ["I", "J", "K", "L", "M", "N"]: sheet[f"{col}{row}"] = "x"
+            sheet[f"M{row}"] = "ingen"
 
-        # f - j
-        if member["category"] in category_columns:
-            sheet[f"{category_columns[member['category']]}{row}"] = "x"
+            row += 1
 
-        # For K-P
-        for col in ["K", "L", "M", "N", "P"]: sheet[f"{col}{row}"] = "x"
-        sheet[f"O{row}"] = "ingen"
+        """elif(konkType == "NMS"):
+            if (member["category"])!= "trener":
+                sheet[f"C{row}"] = "x"
+            
+            # For D-I
+            for col in ["D", "E", "F", "G", "I"]: sheet[f"{col}{row}"] = "x"
+            sheet[f"H{row}"] = "ingen"
+            
+            row += 1"""
 
-        row += 1
 
     # Save the new file
+    excelMockdataFOLDERNAME = "./excel-mockdata-NY"
     sanitized_club = club.replace(" ", "_").replace("/", "_")
-    output_path = f"./excel-mockdata2/pamelding_{sanitized_club}.xlsx"
+    os.makedirs(excelMockdataFOLDERNAME, exist_ok=True)
+    output_path = f"{excelMockdataFOLDERNAME}/pamelding_{sanitized_club}.xlsx"
     workbook.save(output_path)
     output_files.append(output_path)
 

@@ -2,25 +2,12 @@ import { Gymnast } from '@/types/Gymnast';
 
 type Group = Gymnast[];
 
-const POOL_CATEGORIES: Record<string, string[]> = {
-  "Pulje 1": ["rekrutt"],
-  "Pulje 2": ["13-14"],
-  "Pulje 3": ["15-16"],
-  "Pulje 4": ["17-18", "senior"],
-};
-
-const POOL_GROUP_LIMITS: Record<string, number> = {
-  "Pulje 1": 6,
-  "Pulje 2": 3,
-  "Pulje 3": 3,
-  "Pulje 4": 3,
-};
-
 function assignGroupsByClub(
   gymnasts: Gymnast[],
   maxGroups: number,
   categoryOrder: Record<string, number>
 ): Group[] {
+
   const clubGroups = new Map<string, Gymnast[]>();
 
   for (const g of gymnasts) {
@@ -56,27 +43,59 @@ function assignGroupsByClub(
   return groups;
 }
 
-export function generateGroupPlan(gymnasts: Gymnast[]): Record<string, Group[]> {
-  const pools: Record<string, Gymnast[]> = {};
+export function generateGroupPlan(
+  gymnasts: Gymnast[],
+  competitionType: String): Record<string, Group[]>{
+  
+    console.log(competitionType)
 
-  for (const g of gymnasts) {
-    for (const [poolName, cats] of Object.entries(POOL_CATEGORIES)) {
-      if (cats.includes(g.category)) {
-        if (!pools[poolName]) pools[poolName] = [];
-        pools[poolName].push(g);
-        break;
+    // Standard format
+    const POOL_CATEGORIES: Record<string, string[]> = {
+        "Pulje 1": ["rekrutt"],
+        "Pulje 2": ["13-14"],
+        "Pulje 3": ["15-16"],
+        "Pulje 4": ["17-18", "senior"],
+      };
+    const POOL_GROUP_LIMITS: Record<string, number> = {
+        "Pulje 1": 6,
+        "Pulje 2": 3,
+        "Pulje 3": 3,
+        "Pulje 4": 3,
+    };
+
+
+    // Defining competition format
+    if(competitionType == "SeniorNM"){
+      const POOL_CATEGORIES: Record<string, string[]> = {
+        "Pulje 1": ["Senior"], // Ikke seedet pulje - Ca 60%
+        "Pulje 2": ["Senior"], // Seedet - Ca 40%
+      };
+      const POOL_GROUP_LIMITS: Record<string, number> = {
+        "Pulje 1": 2,
+        "Pulje 2": 2,
+      };
+    }
+    
+    const pools: Record<string, Gymnast[]> = {};
+
+    for (const g of gymnasts) {
+      for (const [poolName, cats] of Object.entries(POOL_CATEGORIES)) {
+        if (cats.includes(g.category)) {
+          if (!pools[poolName]) pools[poolName] = [];
+          pools[poolName].push(g);
+          break;
+        }
       }
     }
-  }
 
-  const result: Record<string, Group[]> = {};
+    const result: Record<string, Group[]> = {};
 
-  for (const [poolName, gymnastsInPool] of Object.entries(pools)) {
-    const limit = POOL_GROUP_LIMITS[poolName] ?? 6;
-    const categoryOrder = Object.fromEntries(
-      POOL_CATEGORIES[poolName].map((cat, i) => [cat, i])
-    );
-    result[poolName] = assignGroupsByClub(gymnastsInPool, limit, categoryOrder);
-  }
-  return result;
+    for (const [poolName, gymnastsInPool] of Object.entries(pools)) {
+      const limit = POOL_GROUP_LIMITS[poolName] ?? 6;
+      const categoryOrder = Object.fromEntries(
+        POOL_CATEGORIES[poolName].map((cat, i) => [cat, i])
+      );
+      result[poolName] = assignGroupsByClub(gymnastsInPool, limit, categoryOrder);
+    }
+    return result;
 }

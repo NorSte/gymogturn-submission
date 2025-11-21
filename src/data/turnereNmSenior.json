@@ -1,0 +1,51 @@
+[
+  {"fullName": "Anders Nilsen", "dob": "1999", "club": "Oslo Turnforening", "category": "senior"},
+  {"fullName": "Marius Johansen", "dob": "2001", "club": "Oslo Turnforening", "category": "senior"},
+  {"fullName": "Jonas Haugen", "dob": "2000", "club": "Oslo Turnforening", "category": "senior"},
+  {"fullName": "Henrik Olsen", "dob": "1998", "club": "Oslo Turnforening", "category": "senior"},
+
+  {"fullName": "Kristian Lie", "dob": "1997", "club": "Bergen Turnforening", "category": "senior"},
+  {"fullName": "Sander Lunde", "dob": "1999", "club": "Bergen Turnforening", "category": "senior"},
+  {"fullName": "Emil Andreassen", "dob": "2000", "club": "Bergen Turnforening", "category": "senior"},
+  {"fullName": "Tobias Nygård", "dob": "2002", "club": "Bergen Turnforening", "category": "senior"},
+
+  {"fullName": "Vetle Eriksen", "dob": "1999", "club": "Trondheim Turnforening", "category": "senior"},
+  {"fullName": "Markus Johansen", "dob": "1998", "club": "Trondheim Turnforening", "category": "senior"},
+  {"fullName": "Håkon Berg", "dob": "2001", "club": "Trondheim Turnforening", "category": "senior"},
+  {"fullName": "Simen Lund", "dob": "2000", "club": "Trondheim Turnforening", "category": "senior"},
+
+  {"fullName": "Eirik Halvorsen", "dob": "1997", "club": "Stavanger Turnforening", "category": "senior"},
+  {"fullName": "Daniel Kristoffersen", "dob": "1998", "club": "Stavanger Turnforening", "category": "senior"},
+  {"fullName": "Adrian Moen", "dob": "1999", "club": "Stavanger Turnforening", "category": "senior"},
+  {"fullName": "Martin Aas", "dob": "2000", "club": "Stavanger Turnforening", "category": "senior"},
+
+  {"fullName": "Jørgen Haug", "dob": "1999", "club": "Tromsø Turnforening", "category": "senior"},
+  {"fullName": "Sivert Holmen", "dob": "1998", "club": "Tromsø Turnforening", "category": "senior"},
+  {"fullName": "Oskar Lundberg", "dob": "2001", "club": "Tromsø Turnforening", "category": "senior"},
+  {"fullName": "Kasper Moe", "dob": "2000", "club": "Tromsø Turnforening", "category": "senior"},
+
+  {"fullName": "Magnus Arnesen", "dob": "1998", "club": "Drammen Turn", "category": "senior"},
+  {"fullName": "Patrick Nilsen", "dob": "1999", "club": "Drammen Turn", "category": "senior"},
+  {"fullName": "Fredrik Madsen", "dob": "2000", "club": "Drammen Turn", "category": "senior"},
+  {"fullName": "Tobias Hansen", "dob": "1997", "club": "Drammen Turn", "category": "senior"},
+
+  {"fullName": "Mathias Evensen", "dob": "2001", "club": "Sandefjord Turn", "category": "senior"},
+  {"fullName": "Nikolai Bakke", "dob": "2000", "club": "Sandefjord Turn", "category": "senior"},
+  {"fullName": "Sebastian Holter", "dob": "1998", "club": "Sandefjord Turn", "category": "senior"},
+  {"fullName": "Herman Ødegaard", "dob": "1999", "club": "Sandefjord Turn", "category": "senior"},
+
+  {"fullName": "William Olsen", "dob": "1997", "club": "Hamar IL Turn", "category": "senior"},
+  {"fullName": "Oliver Amundsen", "dob": "1998", "club": "Hamar IL Turn", "category": "senior"},
+  {"fullName": "Lars Jørgensen", "dob": "2001", "club": "Hamar IL Turn", "category": "senior"},
+  {"fullName": "Andreas Rønning", "dob": "2000", "club": "Hamar IL Turn", "category": "senior"},
+
+  {"fullName": "Ola Kristiansen", "dob": "1999", "club": "Kristiansand Turnforening", "category": "senior"},
+  {"fullName": "Trym Antonsen", "dob": "2000", "club": "Kristiansand Turnforening", "category": "senior"},
+  {"fullName": "Filip Eide", "dob": "1998", "club": "Kristiansand Turnforening", "category": "senior"},
+  {"fullName": "Mikkel Skar", "dob": "2002", "club": "Kristiansand Turnforening", "category": "senior"},
+
+  {"fullName": "Jon Eide", "dob": "1997", "club": "Fredrikstad Turnforening", "category": "senior"},
+  {"fullName": "Elias Strand", "dob": "1998", "club": "Fredrikstad Turnforening", "category": "senior"},
+  {"fullName": "Mats Haugan", "dob": "1999", "club": "Fredrikstad Turnforening", "category": "senior"},
+  {"fullName": "Henrik Ryen", "dob": "2000", "club": "Fredrikstad Turnforening", "category": "senior"}
+]

@@ -22,10 +22,11 @@ const App = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [invalidGymnasts, setInvalidGymnasts] = useState<
     { row: number; name?: string; club?: string; errors: string[] }[]
   >([]);
+  const [competitionType, setCompetitionType] = useState<"NMJ" | "NMS" | "NC">("NC");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
 
    // Prepend new files, dedupe by name+size+lastModified, clear download link
@@ -76,7 +77,7 @@ const App = () => {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const { valid, invalid } = await readGymnastsFromExcel(file);
+        const { valid, invalid } = await readGymnastsFromExcel(file, competitionType);
         console.log(`File ${file.name} → ${valid.length} valid, ${invalid.length} invalid`);
         allGymnasts.push(...valid);
         allInvalid.push(...invalid);
@@ -84,11 +85,11 @@ const App = () => {
 
       setInvalidGymnasts(allInvalid);
 
-      const planned = generateGroupPlan(allGymnasts);
+      const planned = generateGroupPlan(allGymnasts, competitionType);
       console.log("Generated plan:", planned);
 
-      // ✅ Now delegate Excel writing
-      const url = writeGroupPlanToExcel(planned);
+      // Now delegate Excel writing
+      const url = writeGroupPlanToExcel(planned, competitionType);
       setDownloadUrl(url);
 
     } catch (err) {
@@ -175,6 +176,7 @@ const App = () => {
             </div>
           )}
 
+          {/*Adding process and empty sumbissions buttons*/}
           <div className="flex items-center gap-3 mt-4">
             <button
               onClick={handleUpload}
@@ -192,12 +194,25 @@ const App = () => {
               🗑️ Tøm filer
             </button>
 
+            {/*adding dropdown menu*/}
+            <select
+              value={competitionType}
+              onChange={(e) => setCompetitionType(e.target.value as "NC" | "NMS" | "NMJ")}
+              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="NC">Norgescup</option>
+              <option value="NMS">SeniorNM</option>
+              <option value="NMJ">JuniorNM</option>
+            </select>
+
+            {/*adding exceltemplate url*/}
+            {/*Burde kanskje legge til en link til hvor Excel-malene ligger*/}
             <a
-              href="/src/data/Pameldingskjema-mal.xlsx"
+              href="/public/Påmeldingsmal-PROD.xlsx"
               download
               className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
             >
-              📄 Last ned mal
+              📄 Last ned mal 
             </a>
           </div>
 
