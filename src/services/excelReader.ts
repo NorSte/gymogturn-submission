@@ -21,19 +21,21 @@ export function readGymnastsFromExcel(file: File, competitionType: string): Prom
         // Uploading the gymnasts and the invalid inputs
         resolve({ valid, invalid });
         return;
-      }else if(competitionType == "NMS"){
-        const [valid, invalid] = readNCandGetGymnastsNMS(json);
-      }
+      }else {
+        const [valid, invalid] = readNCandGetGymnastsNM(json);
+        console.log(valid)
+        console.log(invalid)
 
+        // Uploading the gymnasts and the invalid inputs
+        resolve({ valid, invalid });
+        return;
+      }
     };
 
     reader.onerror = () => reject(reader.error);
     reader.readAsArrayBuffer(file);
   });
 }
-
-
-
 
 function readNCandGetGymnastsNC(json: string[][]): [Gymnast[], { row: number; name?: string; club?: string; errors: string[] }[]] {
   const gymnasts: Gymnast[] = [];
@@ -65,16 +67,39 @@ function readNCandGetGymnastsNC(json: string[][]): [Gymnast[], { row: number; na
     };
     
     // Giving gymnasts category
-    // IF gymnast got two categories, the first one is APPLIED
+    // IF gymnast got two categories, the LAST one is APPLIED
     let category: string | null = null;
+    let nmbOfCategories: number = 0;
     for (const colIndex in categoryMap) {
       const val = row[parseInt(colIndex)];
+      
       if (typeof val === 'string' && val.toLowerCase() === 'x') {
         category = categoryMap[colIndex];
-        break;
+        nmbOfCategories++;
       }
     }
 
+    // Create a warning if a gymnast got multiple categories
+    if (nmbOfCategories > 1) {
+        invalidGymnasts.push({
+          row: i + 1,
+          club: club,
+          name: full_name,
+          errors: [`Multiple categories detected.`]
+        });
+      }
+
+    // Create a warning if a gymnast got zero categories
+    if (nmbOfCategories == 0) {
+        invalidGymnasts.push({
+          row: i + 1,
+          club: club,
+          name: full_name,
+          errors: [`Zero categories detected.`]
+        });
+      }
+
+    
     // Validating gymnast name
     const nameStr = typeof full_name === "string" ? full_name.trim() : "";
 
@@ -83,7 +108,6 @@ function readNCandGetGymnastsNC(json: string[][]): [Gymnast[], { row: number; na
 
     // Invalid if empty, "x", or contains digits
     if (nameStr === "" || nameStr.toLowerCase() === "x" || hasNumberinName) {
-      console.warn(`⚠️ Invalid name in for club ${club} at row ${i + 1}`);
       invalidGymnasts.push({
         row: i + 1,
         club: club,
@@ -96,7 +120,6 @@ function readNCandGetGymnastsNC(json: string[][]): [Gymnast[], { row: number; na
 
     // Validate gymnast also be coach 
     if (is_coach && category) {
-      console.warn(`⚠️ ${full_name} from ${club} is marked as both gymnast and coach`);
       invalidGymnasts.push({
         row: i+1,
         name: full_name,
@@ -107,7 +130,6 @@ function readNCandGetGymnastsNC(json: string[][]): [Gymnast[], { row: number; na
 
     // Check if gymnast have category or is coach
     if (!is_coach && !category) {
-      console.warn(`⚠️ ${full_name} from ${club} does not have category`);
       invalidGymnasts.push({
         row: i+1,
         name: full_name,
@@ -134,7 +156,7 @@ function readNCandGetGymnastsNC(json: string[][]): [Gymnast[], { row: number; na
   return [gymnasts, invalidGymnasts];
 }
 
-function readNCandGetGymnastsNMS(json: string[][]): [Gymnast[], { row: number; name?: string; club?: string; errors: string[] }[]] {
+function readNCandGetGymnastsNM(json: string[][]): [Gymnast[], { row: number; name?: string; club?: string; errors: string[] }[]] {
   const gymnasts: Gymnast[] = [];
   const invalidGymnasts: { 
         row: number; 
@@ -143,22 +165,22 @@ function readNCandGetGymnastsNMS(json: string[][]): [Gymnast[], { row: number; n
         errors: string[]; 
       }[] = [];
 
-  const club = json[2]?.[1] || "Ukjent klubb"; // Cell B3
-  for (let i = 9; i < json.length; i++) { // Index 10 is Row 11      
+  const club = json[2]?.[1] || "Ukjent klubb"; // Cell C3
+  for (let i = 11; i < json.length; i++) { // Index 11 is Row 12      
 
     const row = json[i];
     const full_name = row[0];
     const dob = row[1];
-    const is_coach = (typeof row[7] === "string" && row[7].toLowerCase() === "x");
+    let category = "senior"
+    const is_coach = (typeof row[2] === "string" && row[2].toLowerCase() === "x");
+
+    // Giving gymnasts seed category if seeded
+    if (row[9].toLowerCase() === "x"){category = "seed"}
       
     // Skipping Eksempel Eksemplsen if not changed
     if(full_name == "Eksempel Eksemplsen"){continue;}
     if(!full_name){continue;}
-    
-
-    // SEEDING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
+ 
     // Validating gymnast name
     const nameStr = typeof full_name === "string" ? full_name.trim() : "";
 
@@ -167,7 +189,6 @@ function readNCandGetGymnastsNMS(json: string[][]): [Gymnast[], { row: number; n
 
     // Invalid if empty, "x", or contains digits
     if (nameStr === "" || nameStr.toLowerCase() === "x" || hasNumberinName) {
-      console.warn(`⚠️ Invalid name in for club ${club} at row ${i + 1}`);
       invalidGymnasts.push({
         row: i + 1,
         club: club,
@@ -180,7 +201,6 @@ function readNCandGetGymnastsNMS(json: string[][]): [Gymnast[], { row: number; n
 
     // Validate gymnast also be coach 
     if (is_coach && category) {
-      console.warn(`⚠️ ${full_name} from ${club} is marked as both gymnast and coach`);
       invalidGymnasts.push({
         row: i+1,
         name: full_name,
@@ -188,9 +208,6 @@ function readNCandGetGymnastsNMS(json: string[][]): [Gymnast[], { row: number; n
         errors: ["Is both gymnast and coach."]
       })
     }
-
-    // Skips gymnasts with no category
-    if (!category) continue;
 
     // Adding gymnasts
     gymnasts.push({
@@ -206,4 +223,4 @@ function readNCandGetGymnastsNMS(json: string[][]): [Gymnast[], { row: number; n
   console.log("Gymnasts with invalid output:", invalidGymnasts);
 
   return [gymnasts, invalidGymnasts];
-  }
+}

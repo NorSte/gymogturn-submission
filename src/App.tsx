@@ -100,6 +100,17 @@ const App = () => {
     }
   };
 
+  // Adding dynamic templateFile for the different competition types
+  const templateFile = (() => {
+  switch (competitionType) {
+    case "NMS":
+      return "/Påmeldingsmal-SeniorNM.xlsx";
+    case "NMJ":
+      return "/Påmeldingsmal-SeniorNM.xlsx"; 
+    default:
+      return "/Påmeldingsmal-NC.xlsx";
+  }})();
+
   if (!started) {
     return (
       <div className="h-screen relative">
@@ -208,7 +219,7 @@ const App = () => {
             {/*adding exceltemplate url*/}
             {/*Burde kanskje legge til en link til hvor Excel-malene ligger*/}
             <a
-              href="/public/Påmeldingsmal-PROD.xlsx"
+              href={templateFile}
               download
               className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
             >

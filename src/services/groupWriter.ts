@@ -40,14 +40,16 @@ export function writeGroupPlanToExcel(
     // Writing competition plan
       const competitionRows: any[] = [];
       competitionRows.push(["Tidsplan", "Fredag:"]);
+      competitionRows.push([" "]);
 
       competitionRows.push(["KL: 16:00-20:00", "Hallen åpner, og det er fri trening for de som ønsker"]);
       competitionRows.push(["KL: 20:00", "Lagledermøte med teknisk komitè NGTF"]);
-      competitionRows.push([""]);
-      competitionRows.push([""]);
+      competitionRows.push([" "]);
+      competitionRows.push([" "]);
 
       // New Day - Pool 1
       competitionRows.push(["Tidsplan", "Lørdag:"]);
+      competitionRows.push([""]);
       competitionRows.push(["KL: 09:00", "Hallen åpner for Pulje 1"]);
       competitionRows.push(["KL: 09:00-10:20", "Generell og fri oppvarming i alle apparatene"]);
       competitionRows.push(["KL: 10:30", "Konkurransestart"]);
@@ -63,6 +65,7 @@ export function writeGroupPlanToExcel(
 
       // New day, new pool 3
       competitionRows.push(["Tidsplan", "Søndag:"]);
+      competitionRows.push([" "]);
       competitionRows.push(["KL: 09:00", "Hallen åpner for Pulje 3"]);
       competitionRows.push(["KL: 09:00-11:20", "Generell og fri oppvarming i alle apparatene"]);
       competitionRows.push(["KL: 11:30-14:00", "Konkurranse"]);
