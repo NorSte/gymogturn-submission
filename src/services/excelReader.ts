@@ -171,12 +171,14 @@ function readNCandGetGymnastsNM(json: string[][]): [Gymnast[], { row: number; na
     const row = json[i];
     const full_name = row[0];
     const dob = row[1];
-    let category = "senior"
+    const category = "senior";
+    let seeded = false;
+
     const is_coach = (typeof row[2] === "string" && row[2].toLowerCase() === "x");
 
-    // Giving gymnasts seed category if seeded
+    // Giving gymnasts seeded
     if (typeof row[9] === "string" && row[9].trim().toLowerCase() === "x") {
-      category = "seeded";
+      seeded = true;
     }      
     // Skipping Eksempel Eksemplsen if not changed
     if(full_name == "Eksempel Eksemplsen"){continue;}
@@ -215,7 +217,8 @@ function readNCandGetGymnastsNM(json: string[][]): [Gymnast[], { row: number; na
       full_name: String(full_name),
       dob: dob,
       club,
-      category
+      category,
+      seeded
     });
   }
 

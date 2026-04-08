@@ -80,8 +80,22 @@ export function writeGroupPlanToExcel(
       // Adding competition schedule to excel sheet
       const ws = XLSX.utils.aoa_to_sheet(competitionRows);
       XLSX.utils.book_append_sheet(wb, ws, "Konkurranseplan Mal");
-    }else if(competitionType == "SeniorNM"){
-      
+    }else if (competitionType === "NMS" || competitionType === "NMJ") {
+      for (const [poolName, groups] of Object.entries(plannedGroups)) {
+        const rows: any[] = [];
+        rows.push(["Navn", "Klubb", "Klasse", "Seedet"]);
+
+        let i = 0;
+        groups.forEach((group) => {
+          i++;
+          rows.push([poolName, "Gruppe " + i]);
+          group.forEach((g) => rows.push([g.full_name, g.club, g.category]));
+          rows.push([]);
+        });
+
+        const ws = XLSX.utils.aoa_to_sheet(rows);
+        XLSX.utils.book_append_sheet(wb, ws, poolName);
+      }
     }
  
     // Making and returning download url+file  

@@ -3,4 +3,6 @@ export interface Gymnast {
   dob: string;
   club: string;
   category: string;
+  seeded?: boolean;
+  //licensNmb: string;  // need to check this out
 }
