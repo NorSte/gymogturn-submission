@@ -104,11 +104,11 @@ const App = () => {
   const templateFile = (() => {
   switch (competitionType) {
     case "NMS":
-      return "/Påmeldingsmal-SeniorNM.xlsx";
+      return "/Pameldingskjema-SeniorNM-mal.xlsx";
     case "NMJ":
-      return "/Påmeldingsmal-SeniorNM.xlsx"; 
+      return "/Pameldingskjema-SeniorNM-mal.xlsx"; 
     default:
-      return "/Påmeldingsmal-NC.xlsx";
+      return "/Pameldingskjema-NC-mal.xlsx";
   }})();
 
   if (!started) {

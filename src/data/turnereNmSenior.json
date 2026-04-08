@@ -7,7 +7,7 @@
   {"fullName": "Kristian Lie", "dob": "1997", "club": "Bergen Turnforening", "category": "senior"},
   {"fullName": "Sander Lunde", "dob": "1999", "club": "Bergen Turnforening", "category": "senior"},
   {"fullName": "Emil Andreassen", "dob": "2000", "club": "Bergen Turnforening", "category": "senior"},
-  {"fullName": "Tobias Nygård", "dob": "2002", "club": "Bergen Turnforening", "category": "senior"},
+  {"fullName": "Tobias Nygård", "dob": "2002", "club": "Bergen Turnforening", "category": "trener"},
 
   {"fullName": "Vetle Eriksen", "dob": "1999", "club": "Trondheim Turnforening", "category": "senior"},
   {"fullName": "Markus Johansen", "dob": "1998", "club": "Trondheim Turnforening", "category": "senior"},
@@ -47,5 +47,5 @@
   {"fullName": "Jon Eide", "dob": "1997", "club": "Fredrikstad Turnforening", "category": "senior"},
   {"fullName": "Elias Strand", "dob": "1998", "club": "Fredrikstad Turnforening", "category": "senior"},
   {"fullName": "Mats Haugan", "dob": "1999", "club": "Fredrikstad Turnforening", "category": "senior"},
-  {"fullName": "Henrik Ryen", "dob": "2000", "club": "Fredrikstad Turnforening", "category": "senior"}
+  {"fullName": "Henrik Ryen", "dob": "2000", "club": "Fredrikstad Turnforening", "category": "trener"}
 ]

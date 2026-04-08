@@ -81,7 +81,7 @@ export function writeGroupPlanToExcel(
       const ws = XLSX.utils.aoa_to_sheet(competitionRows);
       XLSX.utils.book_append_sheet(wb, ws, "Konkurranseplan Mal");
     }else if(competitionType == "SeniorNM"){
-
+      
     }
  
     // Making and returning download url+file  

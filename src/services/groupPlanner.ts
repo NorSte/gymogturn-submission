@@ -5,9 +5,9 @@ type Group = Gymnast[];
 function assignGroupsByClub(
   gymnasts: Gymnast[],
   maxGroups: number,
-  categoryOrder: Record<string, number>
+  categoryOrder: Record<string, number>,
 ): Group[] {
-
+  // Assigning gymnasts to groups
   const clubGroups = new Map<string, Gymnast[]>();
 
   for (const g of gymnasts) {
@@ -47,33 +47,58 @@ export function generateGroupPlan(
   gymnasts: Gymnast[],
   competitionType: String): Record<string, Group[]>{
   
-    console.log(competitionType)
+  console.log("[generateGroupPlan] competitionType:", competitionType);
 
-    // Standard format
-    const POOL_CATEGORIES: Record<string, string[]> = {
+    // NORGESCUP format
+    let POOL_CATEGORIES: Record<string, string[]> = {
         "Pulje 1": ["rekrutt"],
         "Pulje 2": ["13-14"],
         "Pulje 3": ["15-16"],
         "Pulje 4": ["17-18", "senior"],
       };
-    const POOL_GROUP_LIMITS: Record<string, number> = {
+    let POOL_GROUP_LIMITS: Record<string, number> = {
         "Pulje 1": 6,
         "Pulje 2": 3,
         "Pulje 3": 3,
         "Pulje 4": 3,
     };
 
+    console.log("[generateGroupPlan] POOL_CATEGORIES:", POOL_CATEGORIES);
+    console.log("[generateGroupPlan] POOL_GROUP_LIMITS:", POOL_GROUP_LIMITS);
 
-    // Defining competition format
-    if(competitionType == "SeniorNM"){
-      const POOL_CATEGORIES: Record<string, string[]> = {
-        "Pulje 1": ["Senior"], // Ikke seedet pulje - Ca 60%
-        "Pulje 2": ["Senior"], // Seedet - Ca 40%
-      };
-      const POOL_GROUP_LIMITS: Record<string, number> = {
-        "Pulje 1": 2,
-        "Pulje 2": 2,
-      };
+
+    // Legger inn hvor mange puljer og grupper det er i NMS og NMJ
+    if (competitionType === "NMS" || competitionType === "NMJ") {
+      const n = gymnasts.length;
+
+      if (n <= 11) {
+        POOL_CATEGORIES = {
+          "Pulje 1": ["Senior"],
+        };
+        POOL_GROUP_LIMITS = {
+          "Pulje 1": 1,
+        };
+
+      } else if (n >= 12 && n <= 26) {
+        POOL_CATEGORIES = {
+          "Pulje 1": ["Senior"],
+          "Pulje 2": ["Seedet"],
+        };
+        POOL_GROUP_LIMITS = {
+          "Pulje 1": 1,
+          "Pulje 2": 1,
+        };
+
+      } else if (n >= 27 && n <= 50) {
+        POOL_CATEGORIES = {
+          "Pulje 1": ["Senior"],
+          "Pulje 2": ["Seedet"],
+        };
+        POOL_GROUP_LIMITS = {
+          "Pulje 1": 2,
+          "Pulje 2": 2,
+        };
+      }
     }
     
     const pools: Record<string, Gymnast[]> = {};

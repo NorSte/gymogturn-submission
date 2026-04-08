@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 from collections import defaultdict
 
 # LEGG INN TURNERE HER || HUSK Å ENDRE OUTPUT-PATH
-with open("ifact2Turnere.json", "r", encoding="utf-8") as f:
+with open("turnereNmSenior.json", "r", encoding="utf-8") as f:
     gymnasts = json.load(f)
 
 # Group gymnasts by club
@@ -13,9 +13,9 @@ for gymnast in gymnasts:
    club_groups[gymnast["club"]].append(gymnast)
 
 # HUSK RIKTIG TYPE KONKURRANSE
-template_path = "Påmeldingsmal-TEST.xlsx"
+template_path = "Pameldingsmal-SeniorNM.xlsx"
 output_files = []
-konkType = "NC" # NMS  | NC  | NMJ 
+konkType = "NMS" # NMS  | NC  | NMJ 
 
 # Mapping categories to columns
 category_columns = {
@@ -59,7 +59,7 @@ for club, members in club_groups.items():
     sheet["P9"] = "Foto/filmtillatelse"
     """
 
-    # Write each gymnast's info starting at row 12 after Eksempel Eksempelsen
+    # Write each gymnast's info starting at row index 11, which is row 12 after Eksempel Eksempelsen
     row = 12
     for member in members:
         sheet[f"A{row}"] = member["fullName"]
@@ -80,19 +80,19 @@ for club, members in club_groups.items():
 
             row += 1
 
-        """elif(konkType == "NMS"):
-            if (member["category"])!= "trener":
+        elif(konkType == "NMS"):
+            if (member["category"]) == "trener":
                 sheet[f"C{row}"] = "x"
             
             # For D-I
             for col in ["D", "E", "F", "G", "I"]: sheet[f"{col}{row}"] = "x"
             sheet[f"H{row}"] = "ingen"
             
-            row += 1"""
+            row += 1
 
 
     # Save the new file
-    excelMockdataFOLDERNAME = "./excel-mockdata-NY"
+    excelMockdataFOLDERNAME = "./excel-mockdata-NMSenior"
     sanitized_club = club.replace(" ", "_").replace("/", "_")
     os.makedirs(excelMockdataFOLDERNAME, exist_ok=True)
     output_path = f"{excelMockdataFOLDERNAME}/pamelding_{sanitized_club}.xlsx"

@@ -175,8 +175,9 @@ function readNCandGetGymnastsNM(json: string[][]): [Gymnast[], { row: number; na
     const is_coach = (typeof row[2] === "string" && row[2].toLowerCase() === "x");
 
     // Giving gymnasts seed category if seeded
-    if (row[9].toLowerCase() === "x"){category = "seed"}
-      
+    if (typeof row[9] === "string" && row[9].trim().toLowerCase() === "x") {
+      category = "seeded";
+    }      
     // Skipping Eksempel Eksemplsen if not changed
     if(full_name == "Eksempel Eksemplsen"){continue;}
     if(!full_name){continue;}
