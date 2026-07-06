@@ -15,7 +15,7 @@ import { readGymnastsFromExcel } from "@/services/excelReader";
 import { generateGroupPlan } from "@/services/groupPlanner";
 import { writeGroupPlanToExcel } from "@/services/groupWriter";
 import { Gymnast } from "@/types/Gymnast";
-import SignatureBadge  from "./components/SignatureBadge";
+import SignatureBadge from "./components/SignatureBadge";
 
 const App = () => {
   const [started, setStarted] = useState(false);
@@ -25,11 +25,18 @@ const App = () => {
   const [invalidGymnasts, setInvalidGymnasts] = useState<
     { row: number; name?: string; club?: string; errors: string[] }[]
   >([]);
-  const [competitionType, setCompetitionType] = useState<"NMJ" | "NMS" | "NC">("NC");
+  const [competitionType, setCompetitionType] = useState<"NMJ" | "NMS" | "NC">(
+    "",
+  );
+  const competitionTypeName =
+    competitionType === "NC"
+      ? "Norgescup"
+      : competitionType === "NMS"
+        ? "SeniorNM"
+        : "JuniorNM";
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-
-   // Prepend new files, dedupe by name+size+lastModified, clear download link
+  // Prepend new files, dedupe by name+size+lastModified, clear download link
   const mergeFiles = (incoming: FileList | File[]) => {
     const newOnes = Array.from(incoming);
     const combined = [...newOnes, ...files]; // prepend new first
@@ -64,7 +71,7 @@ const App = () => {
   const handleClearFiles = () => {
     setFiles([]);
     setDownloadUrl(null);
-    setInvalidGymnasts([])
+    setInvalidGymnasts([]);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -77,8 +84,13 @@ const App = () => {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const { valid, invalid } = await readGymnastsFromExcel(file, competitionType);
-        console.log(`File ${file.name} → ${valid.length} valid, ${invalid.length} invalid`);
+        const { valid, invalid } = await readGymnastsFromExcel(
+          file,
+          competitionType,
+        );
+        console.log(
+          `File ${file.name} → ${valid.length} valid, ${invalid.length} invalid`,
+        );
         allGymnasts.push(...valid);
         allInvalid.push(...invalid);
       }
@@ -91,10 +103,12 @@ const App = () => {
       // Now delegate Excel writing
       const url = writeGroupPlanToExcel(planned, competitionType);
       setDownloadUrl(url);
-
     } catch (err) {
       console.error("❌ Processing failed:", err);
-      alert("Noe gikk galt: " + (err instanceof Error ? err.message : "Ukjent feil"));
+      alert(
+        "Noe gikk galt: " +
+          (err instanceof Error ? err.message : "Ukjent feil"),
+      );
     } finally {
       setUploading(false);
     }
@@ -102,22 +116,27 @@ const App = () => {
 
   // Adding dynamic templateFile for the different competition types
   const templateFile = (() => {
-  switch (competitionType) {
-    case "NMS":
-      return "/Pameldingskjema-SeniorNM-mal.xlsx";
-    case "NMJ":
-      return "/Pameldingskjema-SeniorNM-mal.xlsx"; 
-    default:
-      return "/Pameldingskjema-NC-mal.xlsx";
-  }})();
+    switch (competitionType) {
+      case "NMS":
+        return "/Pameldingskjema-SeniorNM-mal.xlsx";
+      case "NMJ":
+        return "/Pameldingskjema-JuniorNM-mal.xlsx";
+      default:
+        return "/Pameldingskjema-NC-mal.xlsx";
+    }
+  })();
 
   if (!started) {
     return (
       <div className="h-screen relative">
         {/* centered content */}
         <div className="flex flex-col justify-center items-center text-center px-6 h-full">
-          <h1 className="text-3xl font-bold mb-4">Velkommen til Puljeplanleggeren</h1>
-          <p className="text-gray-600 mb-8">Last opp Excel-filer for å generere puljer og grupper automatisk.</p>
+          <h1 className="text-3xl font-bold mb-4">
+            Velkommen til Puljeplanleggeren
+          </h1>
+          <p className="text-gray-600 mb-8">
+            Last opp Excel-filer for å generere puljer og grupper automatisk.
+          </p>
           <button
             onClick={() => setStarted(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition"
@@ -127,9 +146,13 @@ const App = () => {
         </div>
 
         {/* pinned bottom-right */}
-        <SignatureBadge text="" logoSrc="/NorSte.jpg" href="https://github.com/NorSte" />
+        <SignatureBadge
+          text=""
+          logoSrc="/NorSte.jpg"
+          href="https://github.com/NorSte"
+        />
       </div>
-  );
+    );
   }
   return (
     <div className="min-h-screen bg-gray-50 relative w-full">
@@ -143,7 +166,9 @@ const App = () => {
             alt="Tilbake til start"
             className="h-[75px] w-[75px] object-contain"
           />
-          <span className="hidden sm:inline text-sm font-medium">Tilbake til start</span>
+          <span className="hidden sm:inline text-sm font-medium">
+            Tilbake til start
+          </span>
         </button>
       </div>
 
@@ -159,7 +184,9 @@ const App = () => {
             className="w-full border-2 border-dashed border-gray-300 rounded-xl p-8 text-center text-gray-600 hover:border-blue-500 transition-colors mb-4"
           >
             <p className="text-lg">Dra og slipp Excel-filer her</p>
-            <p className="text-sm text-gray-400">(eller velg filer manuelt under)</p>
+            <p className="text-sm text-gray-400">
+              (eller velg filer manuelt under)
+            </p>
           </div>
 
           <input
@@ -178,11 +205,14 @@ const App = () => {
             <div className="mb-8">
               <ul className="text-sm text-gray-700 list-disc list-inside">
                 {files.map((file) => (
-                  <li key={`${file.name}-${file.size}-${file.lastModified}`}>📄 {file.name}</li>
+                  <li key={`${file.name}-${file.size}-${file.lastModified}`}>
+                    📄 {file.name}
+                  </li>
                 ))}
               </ul>
               <div className="text-sm text-gray-600 mb-1">
-                {files.length} fil{files.length === 1 ? "" : "er"} klare for opplasting
+                {files.length} fil{files.length === 1 ? "" : "er"} klare for
+                opplasting
               </div>
             </div>
           )}
@@ -194,7 +224,9 @@ const App = () => {
               disabled={!files.length || uploading}
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg disabled:opacity-50 transition"
             >
-              {uploading ? "⏳ Jobber med fordeling..." : "🚀 Last opp og prosesser"}
+              {uploading
+                ? "⏳ Jobber med fordeling..."
+                : "🚀 Last opp og prosesser"}
             </button>
 
             <button
@@ -208,22 +240,26 @@ const App = () => {
             {/*adding dropdown menu*/}
             <select
               value={competitionType}
-              onChange={(e) => setCompetitionType(e.target.value as "NC" | "NMS" | "NMJ")}
+              onChange={(e) =>
+                setCompetitionType(e.target.value as "NC" | "NMS" | "NMJ")
+              }
               className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
+              <option value="" disabled>
+                Velg konkurransetype
+              </option>
               <option value="NC">Norgescup</option>
               <option value="NMS">SeniorNM</option>
               <option value="NMJ">JuniorNM</option>
             </select>
 
             {/*adding exceltemplate url*/}
-            {/*Burde kanskje legge til en link til hvor Excel-malene ligger*/}
             <a
               href={templateFile}
               download
               className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
             >
-              📄 Last ned mal 
+              📄 Last ned mal for {competitionTypeName}
             </a>
           </div>
 
@@ -249,22 +285,21 @@ const App = () => {
                 {invalidGymnasts.map((g, idx) => (
                   <li key={idx}>
                     {g.club ? `${g.club} – ` : ""}
-                    Rad {g.row} – {g.name || "Ukjent navn"} → {g.errors.join(", ")}
+                    Rad {g.row} – {g.name || "Ukjent navn"} →{" "}
+                    {g.errors.join(", ")}
                   </li>
                 ))}
               </ul>
             </div>
           )}
-
         </div>
       </div>
 
-
       <SignatureBadge
-          text=""
-          logoSrc="/NorSte.jpg"
-          href="https://github.com/NorSte" // optional (clickable if set)
-        />
+        text=""
+        logoSrc="/NorSte.jpg"
+        href="https://github.com/NorSte" // optional (clickable if set)
+      />
     </div>
   );
 };
