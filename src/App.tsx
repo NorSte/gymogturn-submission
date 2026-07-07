@@ -267,7 +267,7 @@ const App = () => {
             <div style={{ marginBottom: "2rem", textAlign: "center" }}>
               <a
                 href={downloadUrl}
-                download="planned_groups_and_pools.xlsx"
+                download="tentative_groups_and_pools.xlsx"
                 className="inline-block bg-green-100 text-green-800 font-medium py-2 px-4 rounded-lg hover:bg-green-200 transition"
               >
                 📥 Last ned pulje- og gruppeoversikt

@@ -37,7 +37,7 @@ export function writeGroupPlanToExcel(
       XLSX.utils.book_append_sheet(wb, ws, poolName);
     }
 
-    // Writing competition plan
+    // Writing competition plan for Norgescup
       const competitionRows: any[] = [];
       competitionRows.push(["Tidsplan", "Fredag:"]);
       competitionRows.push([" "]);
@@ -83,19 +83,61 @@ export function writeGroupPlanToExcel(
     }else if (competitionType === "NMS" || competitionType === "NMJ") {
       for (const [poolName, groups] of Object.entries(plannedGroups)) {
         const rows: any[] = [];
-        rows.push(["Navn", "Klubb", "Klasse", "Seedet"]);
+        rows.push(["Navn", "Klubb"]);
 
         let i = 0;
         groups.forEach((group) => {
           i++;
           rows.push([poolName, "Gruppe " + i]);
-          group.forEach((g) => rows.push([g.full_name, g.club, g.category]));
+          group.forEach((g) => rows.push([g.full_name, g.club]));
           rows.push([]);
         });
 
         const ws = XLSX.utils.aoa_to_sheet(rows);
         XLSX.utils.book_append_sheet(wb, ws, poolName);
       }
+
+    // Writing competition plan for NM Junior and Senior
+    const competitionRows: any[] = [];
+  
+    competitionRows.push(["Foreløpig Tidsplan"]);
+    competitionRows.push([" "]);
+
+
+    competitionRows.push(["Fredag XX. måned "]);
+    competitionRows.push(["15:00 - 20:00 ", "Fri trening"]);
+    competitionRows.push(["19:00 - 20:00 ", "Teknisk møte for trenere og jury. "]);
+    competitionRows.push(["","Det er obligatorisk oppmøte med én fra hver klubb"]);
+    competitionRows.push([" "]);
+
+    competitionRows.push(["Lørdag XX. måned "]);
+    competitionRows.push(["NM i 4-kamp, 6-kamp og lagkonkurranse. Kvalifisering til apparatfinaler (6 beste) "]);
+    competitionRows.push(["08:00","Hallen åpner"]);
+    competitionRows.push(["08:15","Generell oppvarming"]);
+    competitionRows.push(["08:45 - 10:15","Apparatprøving pulje 1"]);
+    competitionRows.push(["09:30","Dommermøte"]);
+    competitionRows.push(["10:25","Innmarsj pulje 1"]);
+    competitionRows.push(["10:30","Konkurransestart pulje 1"]);
+    competitionRows.push(["13:30 - 15:00 ","Generell oppvarming og apparatprøving pulje 2"]);
+    competitionRows.push(["15:05 ","Innmarsj med alle deltakere og åpning av NM"]);
+    competitionRows.push(["15:30 ","Konkurransestart pulje 2"]);
+    competitionRows.push(["","Premieutdeling starter umiddelbart etter at siste pulje er ferdig"]);
+    competitionRows.push(["19.00 - 23:00 ","Bankett"]);
+    competitionRows.push([" "]);
+
+    competitionRows.push(["Søndag XX. måned"]);
+    competitionRows.push(["08:00 ","Hallen åpner"]);
+    competitionRows.push(["08:15 - 09:45 ","Oppvarming og apparatprøver for finalister"]);
+    competitionRows.push(["09:00 - 09:45 ","Dommermøte"]);
+    competitionRows.push(["10:00 ","Konkurransestart finaler enkeltapparater"]);
+    competitionRows.push(["13:00 ","Medaljeseremoni finaler enkeltapparater og avslutning. "]);
+    competitionRows.push(["Tidene er satt med forbehold om endringer som kan komme etter påmeldingsfristen."]);
+    competitionRows.push([" "]);
+
+    
+    // Adding competition schedule to excel sheet
+    const ws = XLSX.utils.aoa_to_sheet(competitionRows);
+    XLSX.utils.book_append_sheet(wb, ws, "Konkurranseplan Mal");
     }
  
     // Making and returning download url+file  
