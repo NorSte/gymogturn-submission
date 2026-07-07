@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 from collections import defaultdict
 
 # LEGG INN TURNERE HER || HUSK Å ENDRE OUTPUT-PATH
-with open("turnereNmSenior.json", "r", encoding="utf-8") as f:
+with open("turnereNmJunior.json", "r", encoding="utf-8") as f:
     gymnasts = json.load(f)
 
 # Group gymnasts by club
@@ -92,7 +92,7 @@ for club, members in club_groups.items():
 
 
     # Save the new file
-    excelMockdataFOLDERNAME = "./excel-mockdata-NMSenior"
+    excelMockdataFOLDERNAME = "./excel-mockdata-NMJunior"
     sanitized_club = club.replace(" ", "_").replace("/", "_")
     os.makedirs(excelMockdataFOLDERNAME, exist_ok=True)
     output_path = f"{excelMockdataFOLDERNAME}/pamelding_{sanitized_club}.xlsx"
