@@ -22,12 +22,13 @@ const App = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [competitionTypeError, setCompetitionTypeError] = useState("");
   const [invalidGymnasts, setInvalidGymnasts] = useState<
     { row: number; name?: string; club?: string; errors: string[] }[]
   >([]);
-  const [competitionType, setCompetitionType] = useState<"NMJ" | "NMS" | "NC">(
-    "",
-  );
+  const [competitionType, setCompetitionType] = useState<
+    "NMJ" | "NMS" | "NC" | ""
+  >("");
 
   const competitionTypeName =
     competitionType === "NC"
@@ -98,6 +99,14 @@ const App = () => {
 
   const handleUpload = async () => {
     if (!files.length) return;
+    if (!competitionType) {
+      setCompetitionTypeError(
+        "Du må velge en konkurransetype FØR du laster opp og prosesserer filer.",
+      );
+      return;
+    }
+
+    setCompetitionTypeError("");
     setUploading(true);
     try {
       const allGymnasts: Gymnast[] = [];
@@ -269,9 +278,10 @@ const App = () => {
 
             <select
               value={competitionType}
-              onChange={(e) =>
-                setCompetitionType(e.target.value as "NC" | "NMS" | "NMJ")
-              }
+              onChange={(e) => {
+                setCompetitionType(e.target.value as "NC" | "NMS" | "NMJ");
+                setCompetitionTypeError("");
+              }}
               className="border border-gray-300 rounded-lg font-medium py-2 px-4 h-15 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="" disabled>
@@ -291,6 +301,12 @@ const App = () => {
               📄 Last ned mal for {competitionTypeName || "..."}
             </button>
           </div>
+
+          {competitionTypeError && (
+            <p className="mt-3 text-sm font-medium text-red-600" role="alert">
+              {competitionTypeError}
+            </p>
+          )}
 
           {downloadUrl && (
             <div style={{ marginBottom: "2rem", textAlign: "center" }}>
