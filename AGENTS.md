@@ -42,6 +42,27 @@ Publisert på https://gymogturn-submission.vercel.app/
    filformat: oppdater det tilhørende dokumentet i `docs/` i samme commit.
 7. **Alias `@/` peker til `src/`.** Bruk det i importer.
 
+## Mulig fremtidig utvidelse (ikke bestemt)
+
+Det er aktuelt – men **ikke besluttet** – å utvide appen til:
+
+- **Kretskonkurranser** i tillegg til de nasjonale (NC, NM). Egne klasseinndelinger,
+  puljestørrelser og maler må da avklares med kretsen/NGTF.
+- **Turn kvinner** i tillegg til turn menn. Andre apparater, andre klasser og
+  sannsynligvis egne fordelingsregler.
+
+Hva dette betyr for deg som jobber i koden:
+
+- **Ikke implementer noe av dette på eget initiativ.** Reglene finnes ikke skrevet ned
+  ennå, og gjetting gir feil fordeling.
+- **Ikke skriv logikk som låser oss til dagens antagelser.** Konkret: unngå å hardkode
+  "herreturn" eller "nasjonal konkurranse" som en implisitt forutsetning. Konkurranse-
+  typen (`NC` / `NMS` / `NMJ`) er allerede en parameter – hold den slik, og hold
+  domeneregler i `services/` og `types/` fremfor spredt i `App.tsx`.
+- **Ikke bygg generaliseringer "for sikkerhets skyld" heller.** Abstraksjoner uten en
+  faktisk andre bruker blir som regel feil. Refaktorer når regelverket foreligger.
+- Blir dette besluttet, skal det inn som en ADR i `docs/decisions/` før koding.
+
 ## Kjapp start
 
 ```bash

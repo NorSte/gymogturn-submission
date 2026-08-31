@@ -56,7 +56,8 @@ Bevisst *ikke* del av produktet:
 - Innlogging, brukerkontoer, lagring mellom økter
 - Backend, database eller API
 - Poengregistrering, resultatlister eller dommersystem
-- Kvinneturn / andre grener enn herreturn (per i dag)
+- Turn kvinner / andre grener enn turn menn (per i dag)
+- Kretskonkurranser – kun nasjonale konkurranser støttes i dag
 - Ferdig, endelig tidsplan – appen leverer en **mal** med plassholdere som
   arrangøren justerer selv
 - E-postutsending eller påmeldingsinnsamling
@@ -69,4 +70,18 @@ fordelingslogikk som Senior-NM (se `domain.md` → "Junior-NM").
 Nærliggende ønsker, ikke implementert:
 - Egen fordelingstabell for Junior-NM
 - Mulighet for å redigere fordelingen i appen før eksport
-- Støtte for flere gymnastikkgrener
+
+## Mulige utvidelser (ikke besluttet)
+
+Følgende er identifisert som aktuelt, men er **ikke bestemt** og har ikke noe
+regelverk kartlagt ennå:
+
+- **Kretskonkurranser.** I dag dekkes kun nasjonale konkurranser (Norgescup, NM).
+  Kretskonkurranser har egne klasseinndelinger og puljestørrelser som må avklares
+  med kretsen/NGTF før de kan implementeres.
+- **Turn kvinner.** I dag dekkes kun turn menn. Andre apparater, andre klasser og
+  sannsynligvis egne fordelingsregler.
+
+Begge vil kreve nye Excel-maler, egne lesere og egne fordelingsregler. Ingen av delene
+skal påvirke dagens kode før beslutning er tatt og reglene er skrevet ned – se
+`AGENTS.md` → "Mulig fremtidig utvidelse".
