@@ -28,12 +28,33 @@ const App = () => {
   const [competitionType, setCompetitionType] = useState<"NMJ" | "NMS" | "NC">(
     "",
   );
+
   const competitionTypeName =
     competitionType === "NC"
       ? "Norgescup"
       : competitionType === "NMS"
         ? "SeniorNM"
         : "JuniorNM";
+
+  const templateOptions: { value: "NC" | "NMS" | "NMJ"; label: string; href: string }[] = [
+    { value: "NC", label: "Norgescup", href: "/Pameldingskjema-NC-mal.xlsx" },
+    { value: "NMS", label: "Senior NM", href: "/Pameldingskjema-SeniorNM-mal.xlsx" },
+    { value: "NMJ", label: "Junior NM", href: "/Pameldingskjema-JuniorNM-mal.xlsx" },
+  ];
+
+  const downloadTemplate = (value?: "NC" | "NMS" | "NMJ") => {
+    const selectedType = value ?? competitionType;
+    const chosen = templateOptions.find((option) => option.value === selectedType);
+    if (!chosen) return;
+
+    const link = document.createElement("a");
+    link.href = chosen.href;
+    link.download = chosen.href.split("/").pop() || "template.xlsx";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Prepend new files, dedupe by name+size+lastModified, clear download link
@@ -190,6 +211,7 @@ const App = () => {
           </div>
 
           <input
+            ref={fileInputRef}
             type="file"
             accept=".xlsx"
             multiple
@@ -198,8 +220,16 @@ const App = () => {
               if (fileInputRef.current) fileInputRef.current.value = "";
             }}
             onChange={handleFileChange}
-            className="mb-4 w-full file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-lg file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+            className="hidden"
           />
+
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="mb-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition"
+          >
+            Last opp filer
+          </button>
 
           {files.length > 0 && (
             <div className="mb-8">
@@ -237,13 +267,12 @@ const App = () => {
               🗑️ Tøm filer
             </button>
 
-            {/*adding dropdown menu*/}
             <select
               value={competitionType}
               onChange={(e) =>
                 setCompetitionType(e.target.value as "NC" | "NMS" | "NMJ")
               }
-              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="border border-gray-300 rounded-lg font-medium py-2 px-4 h-15 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="" disabled>
                 Velg konkurransetype
@@ -253,14 +282,14 @@ const App = () => {
               <option value="NMJ">JuniorNM</option>
             </select>
 
-            {/*adding exceltemplate url*/}
-            <a
-              href={templateFile}
-              download
-              className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition text-center"
+            <button
+              type="button"
+              onClick={() => downloadTemplate()}
+              disabled={!competitionType}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition disabled:opacity-50"
             >
-              📄 Last ned mal for {competitionTypeName}
-            </a>
+              📄 Last ned mal for {competitionTypeName || "..."}
+            </button>
           </div>
 
           {downloadUrl && (
